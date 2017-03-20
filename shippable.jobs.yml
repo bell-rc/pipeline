@@ -35,5 +35,10 @@ jobs:
       - TASK:
         - script: ./IN/pipeline_scriptRepo/gitRepo/echo.sh
         - script: ./IN/pipeline_scriptRepo-prvt-2/gitRepo/echo.sh
-    
+  - name: runsh-privatenon
+    type: runSh
+    steps:
+      - IN: prvt-nonmaster
+      - TASK:
+        - script: ./IN/prvt-nonmaster/gitRepo/echo.sh
         
