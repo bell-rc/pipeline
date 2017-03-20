@@ -6,7 +6,7 @@ jobs:
       - IN: t1
       - TASK:
         - script: ./IN/pipeline_scriptRepo/gitRepo/echo.sh
-  - name: runshscript
+  - name: runshscript-public
     type: runSh
     steps:
       - IN: pipeline_scriptRepo-2
