@@ -9,10 +9,10 @@ jobs:
   - name: runshscript-public
     type: runSh
     steps:
-      - IN: pipeline_scriptRepo-2
+      - IN: pipeline_scriptRepo-pbl
       - IN: t1
       - TASK:
-        - script: ./IN/pipeline_scriptRepo-2/gitRepo/echo.sh
+        - script: ./IN/pipeline_scriptRepo-pbl/gitRepo/echo.sh
   - name: runshscript-prvt-public
     type: runSh
     steps:
