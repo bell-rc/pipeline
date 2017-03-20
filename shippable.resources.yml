@@ -23,9 +23,9 @@ resources:
     pointer:
       sourceName: "shiptest-rc-ow/pipeline_script-prvt"
       branch: master
-  - name: prvt-nonmaster
-    type: gitRepo
-    integration: bitbucket
-    pointer:
-      sourceName: "shiptest-rc-ow/pipeline_script-prvt"
-      branch: non
+ # - name: prvt-nonmaster
+  #  type: gitRepo
+  #  integration: bitbucket
+   # pointer:
+   #   sourceName: "shiptest-rc-ow/pipeline_script-prvt"
+    #  branch: non
