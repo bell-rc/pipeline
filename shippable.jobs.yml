@@ -17,7 +17,7 @@ jobs:
     type: runSh
     steps:
       - IN: pipeline_scriptRepo
-      - IN: pipeline_scriptRepo-2
+      - IN: pipeline_scriptRepo-pbl
      # - IN: t1
       - TASK:
         - script: ./IN/pipeline_scriptRepo-pbl/gitRepo/echo.sh
