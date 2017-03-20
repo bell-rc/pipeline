@@ -1,0 +1,8 @@
+jobs:  
+  - name: runshscript
+    type: runSh
+    steps:
+      - IN: pipeline_scriptRepo
+      - TASK:
+        - script: ./IN/pipeline_scriptRepo/gitRepo/runsh/testscript.sh
+        
