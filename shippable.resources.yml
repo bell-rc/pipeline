@@ -11,7 +11,12 @@ resources:
     pointer:
       sourceName: "shiptest-rc-ow/pipeline_scripts-public"
       branch: master
-      
+  - name: pipeline_scriptRepo-nonmster
+    type: gitRepo
+    integration: bitbucket
+    pointer:
+      sourceName: "shiptest-rc-ow/pipeline_scripts-public"
+      branch: non
   - name: pipeline_scriptRepo-prvt-2
     type: gitRepo
     integration: bitbucket
