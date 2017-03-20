@@ -2,5 +2,5 @@ triggers:
   - name: t1
     type: trigger
     version:
-      counter: 1
+      counter: 2
       
