@@ -22,3 +22,15 @@ jobs:
       - TASK:
         - script: ./IN/pipeline_scriptRepo-pbl/gitRepo/echo.sh
         - script: ./IN/pipeline_scriptRepo/gitRepo/echo.sh
+        
+        
+  - name: runsh-private2
+    type: runSh
+    steps:
+      - IN: pipeline_scriptRepo
+      - IN: pipeline_scriptRepo-prvt-2   
+      - TASK:
+        - script: ./IN/pipeline_scriptRepo/gitRepo/echo.sh
+        - script: ./IN/pipeline_scriptRepo-prvt-2/gitRepo/echo.sh
+    
+        
