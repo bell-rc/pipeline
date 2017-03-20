@@ -20,5 +20,5 @@ jobs:
       - IN: pipeline_scriptRepo-2
      # - IN: t1
       - TASK:
-        - script: ./IN/pipeline_scriptRepo-2/gitRepo/echo.sh
+        - script: ./IN/pipeline_scriptRepo-pbl/gitRepo/echo.sh
         - script: ./IN/pipeline_scriptRepo/gitRepo/echo.sh
