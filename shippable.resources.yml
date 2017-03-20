@@ -5,7 +5,7 @@ resources:
     pointer:
       sourceName: "shiptest-rc-ow/pipeline_scripts"
       branch: master
-  - name: pipeline_scriptRepo-2
+  - name: pipeline_scriptRepo-pbl
     type: gitRepo
     integration: bitbucket
     pointer:
