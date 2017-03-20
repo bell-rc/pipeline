@@ -13,3 +13,11 @@ jobs:
       - IN: t1
       - TASK:
         - script: ./IN/pipeline_scriptRepo-2/gitRepo/echo.sh
+  - name: runshscript-prvt-public
+    type: runSh
+    steps:
+      - IN: pipeline_scriptRepo
+      - IN: pipeline_scriptRepo-2
+      - IN: t1
+      - TASK:
+        - script: ./IN/pipeline_scriptRepo-2/gitRepo/echo.sh
