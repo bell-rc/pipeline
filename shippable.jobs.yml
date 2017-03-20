@@ -3,6 +3,7 @@ jobs:
     type: runSh
     steps:
       - IN: pipeline_scriptRepo
+      - IN: t1
       - TASK:
         - script: ./IN/pipeline_scriptRepo/gitRepo/runsh/testscript.sh
         
