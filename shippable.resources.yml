@@ -1,31 +1,107 @@
 resources:
   - name: pipeline_scriptRepo
     type: gitRepo
-    integration: bitbucket
+    integration: github
     pointer:
       sourceName: "shiptest-rc-ow/pipeline_scripts"
       branch: master
-  - name: pipeline_scriptRepo-pbl
-    type: gitRepo
-    integration: bitbucket
+
+  - name: sample_img
+    type: image
+    integration: ship-docker
     pointer:
-      sourceName: "shiptest-rc-ow/pipeline_scripts-public"
-      branch: master
-  - name: pipeline_scriptRepo-nonmster
-    type: gitRepo
-    integration: bitbucket
+      sourceName: "shippabledocker/pipelinev2"
+    seed:
+      versionName: "deploy.1"
+  
+  - name: deploy_img
+    type: image
+    integration: ship-docker
     pointer:
-      sourceName: "shiptest-rc-ow/pipeline_scripts-public"
-      branch: non
-  - name: pipeline_scriptRepo-prvt-2
-    type: gitRepo
-    integration: bitbucket
+      sourceName: "shippabledocker/pipelinev2"
+    seed:
+      versionName: "deploy.2"
+      
+  - name: ddc_cluster
+    type: cluster
+    integration: ship-ddc
     pointer:
-      sourceName: "shiptest-rc-ow/pipeline_script-prvt"
-      branch: master
- # - name: prvt-nonmaster
-  #  type: gitRepo
-  #  integration: bitbucket
-   # pointer:
-   #   sourceName: "shiptest-rc-ow/pipeline_script-prvt"
-    #  branch: non
+      sourceName : "nothing"
+      
+  - name: ddc_dopts
+    type: dockerOptions
+    version:
+      memory: 128
+      
+  - name: test_out_img
+    type: image
+    integration: ship-docker
+    pointer:
+      sourceName: "shippabledocker/ship_plv2node"
+    seed:
+      versionName: "latest"
+            
+  - name: ship_dh
+    type: integration
+    integration: "ship-docker"
+      
+  
+    
+  - name: ship_aws
+    type: integration
+    integration: "ship-aws"
+
+  - name: test_params
+    type: params
+    version:
+      params:
+        TEST: rc
+        secure: Ht2MA4+5bYihYzLIFJe4bANBXlFp8ITXapWXs8g+1CkjSNXbeJBKyUxgf0xbjNPWmtMYr7VHgiyXvCEvaV97wxFcG5Ru4fF96m+Q5s7ti58UB1o1fP/koO4DhSpBdq0V3LZSy9pfbuF2IaC9uWJCOe6H4KnwyTZF5y6AjGKJcRLcFFPyHtvDL0kmoiUOs0DTfCxj9ztiRjBjvqVbQU5Jshd1jWP7G7Gw7TrzBT8rC+8bLWvhS7vHkc2rYiaqp5cGOVLKwl3s2++2fz7OhX3yOn/2XJhKpg4e8y+1g7aTBiuk4aWK3gn6NteVNSocK8/ymgioDKH88foCDuVhoX6y2g== #DEV: alpha
+        
+  - name: notify-slack
+    type: notification
+    integration: "notify-slack"
+    pointer:
+      recipients:
+        - "#rc-public" 
+        - "#rc-private"
+        - "@shiptest-rc-me"
+
+  - name: notify-email
+    type: notification
+    pointer:
+      method: email
+      recipients: 
+        - shiptest.rc.ow@gmail.com
+        - shiptest.rc.me@gmail.com
+  
+  - name: ship_ecr_cli
+    type: cliConfig
+    integration: "ship-ecr"
+    pointer:
+      region: "us-east-1"
+      
+  - name: ship_aws_cli
+    type: cliConfig
+    integration: "ship-aws"
+    pointer:
+      region: "us-east-1"
+  
+  - name: ship_dh_cli
+    type: cliConfig
+    integration: "ship-docker"
+  
+  - name: ship_gcr_cli
+    type: cliConfig
+    integration: "ship-gcr"
+    
+  - name: ship_gke_cli
+    type: cliConfig
+    integration: "ship-gke"
+    pointer:
+      sourceName: "small-cluster"
+      region: "us-east1-d"
+    
+  - name: ship_quay_cli
+    type: cliConfig
+    integration: "ship-quay"
