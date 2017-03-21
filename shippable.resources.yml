@@ -56,7 +56,7 @@ resources:
     version:
       params:
         TEST: rc
-        secure: Ht2MA4+5bYihYzLIFJe4bANBXlFp8ITXapWXs8g+1CkjSNXbeJBKyUxgf0xbjNPWmtMYr7VHgiyXvCEvaV97wxFcG5Ru4fF96m+Q5s7ti58UB1o1fP/koO4DhSpBdq0V3LZSy9pfbuF2IaC9uWJCOe6H4KnwyTZF5y6AjGKJcRLcFFPyHtvDL0kmoiUOs0DTfCxj9ztiRjBjvqVbQU5Jshd1jWP7G7Gw7TrzBT8rC+8bLWvhS7vHkc2rYiaqp5cGOVLKwl3s2++2fz7OhX3yOn/2XJhKpg4e8y+1g7aTBiuk4aWK3gn6NteVNSocK8/ymgioDKH88foCDuVhoX6y2g== #DEV: alpha
+        secure: rA3YOYj8T+6LW+JU+Nz5jIoa7hlrk/QkDuvBz1OUT/pc9p3V11TAI3fzCG120eSsENtVCM68Hl0PvkcNnF2oib4TdkVS1Fc1j0KEZ37K50+pqgMbnpihY0I5kZs5WicXwUJb0rG9q0a8uK6DKquOAxsqAG9GnliEXx3A3Fp7o+YpPpbntiN7+Y2sFN0AWZt3+iL0iIkme+6RVj+s6zK5vuDZuYBdqYEaQHZVmeNjBbxOCK8IyHsCakxNPaTqQ6qlUdlbsZJRBTyI8MSs8tlrB6vU9LAfKxIVPDjLJAE3mAmcA3vp9CbXJtonmYf2h6uXNBD9jMC3RjrYuJOUJVhZyQ== #DEV: alpha
         
   - name: notify-slack
     type: notification
