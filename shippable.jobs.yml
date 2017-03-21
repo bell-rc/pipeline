@@ -2,12 +2,12 @@ jobs:
   - name: runshscripts
     type: runSh
     steps:
-      - IN: pipeline_scriptRepo
+      - IN: pipeline_scriptRepos
       - IN: ship_dh
       - IN: sample_img
       - IN: test_params      
       - TASK:
-        - script: ./IN/pipeline_scriptRepo/gitRepo/runsh/testscript.sh
+        - script: ./IN/pipeline_scriptRepos/gitRepo/runsh/testscript.sh
       - OUT: test_out_img
 
   - name: runsh_pre_jobscripts
@@ -17,11 +17,11 @@ jobs:
       - NOTIFY: notify-email
       - script: echo 'it is for on_start'
     steps:    
-      - IN: pipeline_scriptRepo
+      - IN: pipeline_scriptRepos
         switch: off
       - IN: runshscripts        
       - TASK:
-        - script: ./IN/pipeline_scriptRepo/gitRepo/runsh/pre_runshjob.sh    
+        - script: ./IN/pipeline_scriptRepos/gitRepo/runsh/pre_runshjob.sh    
     on_success:      
       - script: echo 'test in on_success'
       - script: ls
@@ -39,7 +39,7 @@ jobs:
   - name: runcliscripts
     type: runCLI
     steps:
-      - IN: pipeline_scriptRepo   
+      - IN: pipeline_scriptRepos 
       - IN: ship_dh_cli
       - IN: ship_aws_cli
       - IN: ship_gke_cli
@@ -47,7 +47,7 @@ jobs:
       - IN: ship_gcr_cli
       - IN: ship_quay_cli
       - TASK:
-        - script: ./IN/pipeline_scriptRepo/gitRepo/runcli/accInt.sh 
+        - script: ./IN/pipeline_scriptRepos/gitRepo/runcli/accInt.sh 
         
   - name: manifest_dep
     type: manifest
