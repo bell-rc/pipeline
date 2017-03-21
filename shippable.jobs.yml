@@ -3,42 +3,61 @@ jobs:
     type: runSh
     steps:
       - IN: pipeline_scriptRepo
-      - IN: t1
+      - IN: ship_dh
+      - IN: sample_img
+      - IN: test_params      
       - TASK:
-        - script: ./IN/pipeline_scriptRepo/gitRepo/echo.sh
-  - name: runshscript-public
+        - script: ./IN/pipeline_scriptRepo/gitRepo/runsh/testscript.sh
+      - OUT: test_out_img
+
+  - name: runsh_pre_jobscript
     type: runSh
-    steps:
-      - IN: pipeline_scriptRepo-pbl
-      - IN: pipeline_scriptRepo-nonmster
-      - IN: t1
-      - TASK:
-        - script: ./IN/pipeline_scriptRepo-pbl/gitRepo/echo.sh
-        - script: ./IN/pipeline_scriptRepo-nonmster/gitRepo/echo.sh
-        
-  - name: runshscript-prvt-public
-    type: runSh
-    steps:
+    on_start:
+      - NOTIFY: notify-slack
+      - NOTIFY: notify-email
+      - script: echo 'it is for on_start'
+    steps:    
       - IN: pipeline_scriptRepo
-      - IN: pipeline_scriptRepo-pbl
-     # - IN: t1
+        switch: off
+      - IN: runshscript        
       - TASK:
-        - script: ./IN/pipeline_scriptRepo-pbl/gitRepo/echo.sh
-        - script: ./IN/pipeline_scriptRepo/gitRepo/echo.sh
-        
-        
-  - name: runsh-private2
-    type: runSh
+        - script: ./IN/pipeline_scriptRepo/gitRepo/runsh/pre_runshjob.sh    
+    on_success:      
+      - script: echo 'test in on_success'
+      - script: ls
+      - script: echo 'it is success'
+    # # - script: ./IN/sample-script-3/gitRepo/echo.sh
+    on_failure:
+      - script: echo 'testing1 failure'      
+      - script: pwd
+      - script: echo 'OOPS on_failure :('
+    always:
+      - script: echo "This works on_always"
+      - NOTIFY: notify-slack
+      - NOTIFY: notify-email
+
+  - name: runcliscript
+    type: runCLI
     steps:
-      - IN: pipeline_scriptRepo
-      - IN: pipeline_scriptRepo-prvt-2   
+      - IN: pipeline_scriptRepo   
+      - IN: ship_dh_cli
+      - IN: ship_aws_cli
+      - IN: ship_gke_cli
+      - IN: ship_ecr_cli
+      - IN: ship_gcr_cli
+      - IN: ship_quay_cli
       - TASK:
-        - script: ./IN/pipeline_scriptRepo/gitRepo/echo.sh
-        - script: ./IN/pipeline_scriptRepo-prvt-2/gitRepo/echo.sh
- # - name: runsh-privatenon
-  #  type: runSh
-   # steps:
-    #  - IN: prvt-nonmaster
-     # - TASK:
-      #  - script: ./IN/prvt-nonmaster/gitRepo/echo.sh
+        - script: ./IN/pipeline_scriptRepo/gitRepo/runcli/accInt.sh 
         
+  - name: manifest_dep
+    type: manifest
+    steps:
+      - IN: deploy_img       
+      
+  - name: deploy_ddc
+    type: deploy
+    steps:
+      - IN: manifest_dep
+      - IN: ddc_cluster
+      - IN: ddc_dopts
+      - TASK: managed
