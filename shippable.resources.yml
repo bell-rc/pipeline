@@ -1,5 +1,5 @@
 resources:
-  - name: pipeline_scriptRepo
+  - name: pipeline_scriptRepos
     type: gitRepo
     integration: bitbucket
     pointer:
