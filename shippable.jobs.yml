@@ -1,5 +1,5 @@
 jobs:  
-  - name: runshscript
+  - name: runshscripts
     type: runSh
     steps:
       - IN: pipeline_scriptRepo
@@ -10,7 +10,7 @@ jobs:
         - script: ./IN/pipeline_scriptRepo/gitRepo/runsh/testscript.sh
       - OUT: test_out_img
 
-  - name: runsh_pre_jobscript
+  - name: runsh_pre_jobscripts
     type: runSh
     on_start:
       - NOTIFY: notify-slack
@@ -19,7 +19,7 @@ jobs:
     steps:    
       - IN: pipeline_scriptRepo
         switch: off
-      - IN: runshscript        
+      - IN: runshscripts        
       - TASK:
         - script: ./IN/pipeline_scriptRepo/gitRepo/runsh/pre_runshjob.sh    
     on_success:      
@@ -36,7 +36,7 @@ jobs:
       - NOTIFY: notify-slack
       - NOTIFY: notify-email
 
-  - name: runcliscript
+  - name: runcliscripts
     type: runCLI
     steps:
       - IN: pipeline_scriptRepo   
