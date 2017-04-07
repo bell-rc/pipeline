@@ -48,6 +48,20 @@ jobs:
       - IN: ship_quay_cli
       - TASK:
         - script: ./IN/pipeline_scriptRepo/gitRepo/runcli/accInt.sh 
+    on_success:      
+      - script: echo 'test in on_success for runcli'
+      - script: ls
+      - script: echo 'it is success for runcli'
+      - NOTIFY: notify-slack
+      - NOTIFY: notify-email
+    on_failure:
+      - script: echo 'Failure for runcli'      
+      - script: pwd
+      - script: echo 'OOPS on_failure :( for runcli'
+      - NOTIFY: notify-slack
+      - NOTIFY: notify-email
+    always:
+      - script: echo "This works on_always for runcli"      
         
   - name: manifest_dep
     type: manifest
