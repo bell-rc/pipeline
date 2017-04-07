@@ -52,6 +52,7 @@ jobs:
       - IN: ship_quay_cli    
       - TASK:
         - script: ./IN/pipeline_scriptRepo/gitRepo/runcli/accInt.sh 
+        - script: aws iam get-user
     on_success:      
       - script: echo 'test in on_success for runcli'
       - script: ls
