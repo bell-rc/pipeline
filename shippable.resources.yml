@@ -65,7 +65,7 @@ resources:
       recipients:
         - "#rc-public" 
         - "#rc-private"
-        - "@shiptest-rc-me"
+        - "@shiptest-rc-ow"
 
   - name: notify-email
     type: notification
