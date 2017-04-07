@@ -37,7 +37,11 @@ jobs:
       - NOTIFY: notify-email
 
   - name: runcliscript
-    type: runCLI
+    type: runCLI    
+    on_start:
+      - NOTIFY: notify-slack
+      - NOTIFY: notify-email
+      - script: echo 'it is for on_start'
     steps:
       - IN: pipeline_scriptRepo
       - IN: ship_dh_cli
@@ -45,7 +49,7 @@ jobs:
       - IN: ship_gke_cli
       - IN: ship_ecr_cli
       - IN: ship_gcr_cli
-      - IN: ship_quay_cli
+      - IN: ship_quay_cli    
       - TASK:
         - script: ./IN/pipeline_scriptRepo/gitRepo/runcli/accInt.sh 
     on_success:      
