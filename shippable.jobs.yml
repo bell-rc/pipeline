@@ -52,10 +52,10 @@ jobs:
       - IN: ship_quay_cli    
       - TASK:
         - script: ./IN/pipeline_scriptRepo/gitRepo/runcli/accInt.sh 
-       # - script: aws iam get-user
-       # - script: docker ps
-       # - script: gcloud auth application-default login
-       # - script: docker build -t quay.io/shippablequay/pipelineruncli .
+        - script: aws iam get-user
+        - script: docker ps
+        - script: gcloud auth application-default login
+        - script: docker build -t quay.io/shippablequay/pipelineruncli .
     on_success:      
       - script: echo 'test in on_success for runcli'
       - script: ls
