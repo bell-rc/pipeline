@@ -53,7 +53,7 @@ jobs:
       - TASK:
         - script: ./IN/pipeline_scriptRepo/gitRepo/runcli/accInt.sh 
         - script: aws iam get-user
-        - script: docker ps
+       # - script: docker ps
         - script: gcloud auth application-default login
         - script: docker build -t quay.io/shippablequay/pipelineruncli .
     on_success:      
