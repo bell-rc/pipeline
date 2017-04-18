@@ -30,11 +30,11 @@ resources:
     seed:
       versionName: "deploy.2"
       
-  - name: ddc_cluster
-    type: cluster
-    integration: ship-ddc
-    pointer:
-      sourceName : "nothing"
+  #- name: ddc_cluster
+  #  type: cluster
+  #  integration: ship-ddc
+   # pointer:
+    #  sourceName : "nothing"
       
   - name: ddc_dopts
     type: dockerOptions
@@ -49,13 +49,13 @@ resources:
     seed:
       versionName: "latest"
             
-  - name: ship_dh
-    type: integration
-    integration: "ship-docker"  
+  #- name: ship_dh
+  #  type: integration
+   # integration: "ship-docker"  
     
-  - name: ship_aws
-    type: integration
-    integration: "ship-aws"
+  #- name: ship_aws
+  #  type: integration
+  #  integration: "ship-aws"
 
   - name: test_params
     type: params
@@ -98,11 +98,11 @@ resources:
         - "#rc-private"
         - "@shiptestrcow"
         
-  - name: ship_ecr_cli
-    type: cliConfig
-    integration: "ship-ecr"
-    pointer:
-      region: "us-east-1"
+  #- name: ship_ecr_cli
+   # type: cliConfig
+   # integration: "ship-ecr"
+   # pointer:
+   #   region: "us-east-1"
       
 #  - name: ship_aws_cli
  #   type: cliConfig
