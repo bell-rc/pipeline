@@ -2,16 +2,16 @@
 resources:
   - name: pipeline_scriptRepo
     type: gitRepo
-    integration: bitbucket
+    integration: bitbucketServer 
     pointer:
-      sourceName: "shiptest-rc-ow/pipeline_scripts"
+      sourceName: "~SHIPTEST-RC-OW/pipeline_scripts"
       branch: master
   
   - name: same_syncRepos
     type: gitRepo
-    integration: bitbucket
+    integration: bitbucketServer 
     pointer:
-      sourceName: "shiptest-rc-ow/pipeline"
+      sourceName: "~SHIPTEST-RC-OW/pipeline"
       branch: master
       
   - name: sample_img
