@@ -104,27 +104,27 @@ resources:
     pointer:
       region: "us-east-1"
       
-  - name: ship_aws_cli
-    type: cliConfig
-    integration: "ship-aws"
-    pointer:
-      region: "us-east-1"
+#  - name: ship_aws_cli
+ #   type: cliConfig
+ #   integration: "ship-aws"
+ #   pointer:
+  #    region: "us-east-1"
   
-  - name: ship_dh_cli
-    type: cliConfig
-    integration: "ship-docker"
+ # - name: ship_dh_cli
+ #   type: cliConfig
+  #  integration: "ship-docker"
   
-  - name: ship_gcr_cli
-    type: cliConfig
-    integration: "ship-gcr"
+ # - name: ship_gcr_cli
+ #   type: cliConfig
+  #  integration: "ship-gcr"
     
-  - name: ship_gke_cli
-    type: cliConfig
-    integration: "ship-gke"
-    pointer:
-      sourceName: "small-cluster"
-      region: "us-east1-d"
+ # - name: ship_gke_cli
+ #   type: cliConfig
+  #  integration: "ship-gke"
+  #  pointer:
+   #   sourceName: "small-cluster"
+   #   region: "us-east1-d"
     
-  - name: ship_quay_cli
-    type: cliConfig
-    integration: "ship-quay"        
+  #- name: ship_quay_cli
+  #  type: cliConfig
+  #  integration: "ship-quay"        
