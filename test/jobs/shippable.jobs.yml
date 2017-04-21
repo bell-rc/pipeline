@@ -5,9 +5,12 @@ jobs:
       - IN: pipeline_scriptRepo
       - IN: ship_dh
       - IN: sample_img
-      - IN: test_params      
+      - IN: test_params 
+      - IN: key-values
       - TASK:
         - script: ./IN/pipeline_scriptRepo/gitRepo/runsh/testscript.sh
+        - script: echo "$key1"
+        - script: echo "$key2"
       - OUT: test_out_img
 
   - name: runsh_pre_jobscript
@@ -52,8 +55,11 @@ jobs:
       - IN: ship_ecr_cli
       - IN: ship_gcr_cli
       - IN: ship_quay_cli
+      - IN: key-values
       - TASK:
         - script: ./IN/pipeline_scriptRepo/gitRepo/runcli/accInt.sh 
+        - script: echo "$key1"
+        - script: echo "$key2"
         
   - name: manifest_dep
     type: manifest
