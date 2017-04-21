@@ -46,9 +46,9 @@ jobs:
     type: runCLI
     steps:
       - IN: pipeline_scriptRepo   
-     # - IN: ship_dh_cli
-     # - IN: ship_aws_cli
-     # - IN: ship_gke_cli
+      - IN: ship_dh_cli
+      - IN: ship_aws_cli
+      - IN: ship_gke_cli
       - IN: ship_ecr_cli
       - IN: ship_gcr_cli
       - IN: ship_quay_cli
@@ -61,25 +61,26 @@ jobs:
       - IN: deploy_img       
       - IN: t1
       
- # - name: deploy_ddc
- #   type: deploy    
-  #  on_start:
-   #   - NOTIFY: notify-slack
-  ##    - NOTIFY: notify-email
-   #   - NOTIFY: notify-hipchat
-   #   - NOTIFY: notify-irc
-   # steps:
-    #  - IN: manifest_dep
-    #  - IN: ddc_cluster
-    #  - IN: ddc_dopts
-    #  - TASK: managed   
-   # on_success:         
-   #   - NOTIFY: notify-slack
-   #   - NOTIFY: notify-email
-   #   - NOTIFY: notify-hipchat
-   #   - NOTIFY: notify-irc      
-   # on_failure:
-    #  - NOTIFY: notify-slack
-    #  - NOTIFY: notify-email
-    #  - NOTIFY: notify-hipchat
-     # - NOTIFY: notify-irc 
+  - name: deploy_ddc
+    type: deploy    
+    on_start:
+      - NOTIFY: notify-slack
+      - NOTIFY: notify-email
+      - NOTIFY: notify-hipchat
+      - NOTIFY: notify-irc
+    steps:
+      - IN: manifest_dep
+      - IN: ddc_cluster
+      - IN: ddc_dopts
+      - TASK: managed   
+    on_success:         
+      - NOTIFY: notify-slack
+      - NOTIFY: notify-email
+      - NOTIFY: notify-hipchat
+      - NOTIFY: notify-irc      
+    on_failure:
+      - NOTIFY: notify-slack
+      - NOTIFY: notify-email
+      - NOTIFY: notify-hipchat
+      - NOTIFY: notify-irc 
+      
