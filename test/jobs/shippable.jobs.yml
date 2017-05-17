@@ -2,7 +2,7 @@ jobs:
   - name: runshscript
     type: runSh
     steps:
-      - IN: pipeline_scriptRepo
+      - IN: pipeline_scriptRepobb
         showBuildStatus: true
       - IN: ship_dh
       - IN: sample_img
@@ -10,7 +10,7 @@ jobs:
       - IN: t2runsh
       - IN: key-values
       - TASK:
-        - script: ./IN/pipeline_scriptRepo/gitRepo/runsh/testscript.sh
+        - script: ./IN/pipeline_scriptRepobb/gitRepo/runsh/testscript.sh
         - script: echo $key1
         - script: echo $key2
       - OUT: test_out_img
@@ -24,12 +24,12 @@ jobs:
       - NOTIFY: notify-irc
       - script: echo 'it is for on_start'      
     steps:    
-      - IN: pipeline_scriptRepo
+      - IN: pipeline_scriptRepobb
         switch: off
       - IN: runshscript   
       - IN: same_syncRepos
       - TASK:
-        - script: ./IN/pipeline_scriptRepo/gitRepo/runsh/pre_runshjob.sh    
+        - script: ./IN/pipeline_scriptRepobb/gitRepo/runsh/pre_runshjob.sh    
         - script: ./IN/same_syncRepos/gitRepo/script.sh  
         - script: printenv
     on_success:      
