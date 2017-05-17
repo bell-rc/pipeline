@@ -5,54 +5,68 @@ resources:
     integration: bitbucket
     pointer:
       sourceName: "shiptest-rc-ow/pipeline_scripts"
-      branch: master  
-
+      branches:
+        only:
+          - master
+          - pr
+      buildOnPullRequest: true
+      
+  - name: plscript_RepoTagsnReleases
+    type: gitRepo
+    integration: bitbucket
+    pointer:
+      sourceName: "shiptest-rc-ow/pipeline_scripts"
+      tags: 
+        only:
+          - v1.*
+      buildOnTagPush: true
+      
   - name: same_syncRepos
     type: gitRepo
     integration: bitbucket
     pointer:
       sourceName: "shiptest-rc-ow/pipeline"
-      branch: master      
-
+      branch: master  
+      
   - name: sample_img
     type: image
     integration: ship-docker
     pointer:
       sourceName: "shippabledocker/pipelinev2"
     seed:
-      versionName: "deploy.1"  
-
+      versionName: "deploy.2"
+  
   - name: deploy_img
     type: image
     integration: ship-docker
     pointer:
       sourceName: "shippabledocker/pipelinev2"
     seed:
-      versionName: "deploy.2"      
-
+      versionName: "deploy.1"
+      
   - name: ddc_cluster
     type: cluster
     integration: ship-ddc
     pointer:
       sourceName : "nothing"
-
+      
   - name: ddc_dopts
     type: dockerOptions
     version:
-      memory: 128      
-
+      memory: 128
+      
   - name: test_out_img
     type: image
     integration: ship-docker
     pointer:
       sourceName: "shippabledocker/ship_plv2node"
     seed:
-      versionName: "latest"            
-
+      versionName: "latest"
+            
   - name: ship_dh
     type: integration
-    integration: "ship-docker"      
-
+    integration: "ship-docker"  
+    
   - name: ship_aws
     type: integration
     integration: "ship-aws"
@@ -62,8 +76,8 @@ resources:
     version:
       params:
         TEST: rc
-        secure: gF+GyUyD+wtxi3d9YBNsSx7+JXY/UAcVO1wHueMJrALa6PG65httYwYz8KvABMNGARhB4BIo88u1YE3Xcyu9aMTrKysL7+I40PtN0pANm0Gi0TIo3DNxT01j8/8LrWSTQEuanR0XtxEKth/axcKQk71h+wmvA7ibbr0jl/KOxq1tfGaPGvfs0ybWLPRDr1n748IJL2umZoikxgv+Pl76sRwW48AxMH9qYuWzke7DAdvFUfleKIldg3Li4p5e4wg+S0q6F7GV4HZ2/9PwUtxHYWaBu2Z04M/fsWlCc+IdAHgWid0R5sokZnqkw+A0lsMqQy86/1mIV1mFxkW9jTAcmg== #DEV=alpha
-
+        secure: tHZDMmSNXi7vCqpc9/BjArt5i0CKyjiz0TaFnRAvSxzUpYxWahlej6NHrzCLs+y0Oj0SE94/WdV8eYNFh7pR12h1aba1hPvO2KpOFwAzQis2Hjb6vwWvIoyLIJUaDrhF3Pd0DeqK7azMGbiwzPwPeBoBnx4qF8zZerp6L1OPFK+y+DiIx3jbJqMmoWizeAOdxb/cESxQP5P9eggCCvkHu+w1xf2jXbTLxos1PHep+MxvwOXx5mMQy/yeSU2grX5CW5BQpicH4Lz/InhKhNmXWWAK18hFtRcwS1s7DJ2bSSUne9/mYVijYtTSFwh5Uiz7YF8Y6bjMBeHlJfU+VngVjQ== #DEV=alpha
+  
   - name: notify-slack
     type: notification
     integration: "notify-slack"
@@ -80,15 +94,15 @@ resources:
       recipients: 
         - shiptest.rc.ow@gmail.com
         - shiptest.rc.me@gmail.com
-
+  
   - name: notify-irc
     type: notification
     pointer:
       method: irc
       recipients: 
         - "webchat.irchighway.net#test-rc"
-        - "webchat.irchighway.net#test"  
-
+        - "webchat.irchighway.net#test"
+  
   - name: notify-hipchat
     type: notification
     integration: "notify-hipchat"
@@ -96,39 +110,39 @@ resources:
       recipients:
         - "#rc-public" 
         - "#rc-private"
-        - "@shiptestrcow"        
-
+        - "@shiptestrcow"
+        
   - name: ship_ecr_cli
     type: cliConfig
     integration: "ship-ecr"
     pointer:
       region: "us-east-1"
-
+      
   - name: ship_aws_cli
     type: cliConfig
     integration: "ship-aws"
     pointer:
       region: "us-east-1"
-
+  
   - name: ship_dh_cli
     type: cliConfig
     integration: "ship-docker"
-
+  
   - name: ship_gcr_cli
     type: cliConfig
     integration: "ship-gcr"
-
+    
   - name: ship_gke_cli
     type: cliConfig
     integration: "ship-gke"
     pointer:
       sourceName: "small-cluster"
       region: "us-east1-d"
-
+    
   - name: ship_quay_cli
     type: cliConfig
-    integration: "ship-quay"        
-
+    integration: "ship-quay"
+    
   - name: key-values
     type: integration
     integration: "ship-keyvalue"
