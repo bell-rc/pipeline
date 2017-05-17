@@ -2,15 +2,17 @@ jobs:
   - name: runshscript
     type: runSh
     steps:
-      - IN: pipeline_scriptRepobb
+      - IN: pipeline_scriptRepo
+        showBuildStatus: true
       - IN: ship_dh
       - IN: sample_img
-      - IN: test_params 
+      - IN: test_params  
+      - IN: t2runsh
       - IN: key-values
       - TASK:
-        - script: ./IN/pipeline_scriptRepobb/gitRepo/runsh/testscript.sh
-        - script: echo "$key1"
-        - script: echo "$key2"
+        - script: ./IN/pipeline_scriptRepo/gitRepo/runsh/testscript.sh
+        - script: echo $key1
+        - script: echo $key2
       - OUT: test_out_img
 
   - name: runsh_pre_jobscript
@@ -20,15 +22,16 @@ jobs:
       - NOTIFY: notify-email
       - NOTIFY: notify-hipchat
       - NOTIFY: notify-irc
-      - script: echo 'it is for on_start'
+      - script: echo 'it is for on_start'      
     steps:    
-      - IN: pipeline_scriptRepobb
+      - IN: pipeline_scriptRepo
         switch: off
       - IN: runshscript   
       - IN: same_syncRepos
       - TASK:
-        - script: ./IN/pipeline_scriptRepobb/gitRepo/runsh/pre_runshjob.sh    
+        - script: ./IN/pipeline_scriptRepo/gitRepo/runsh/pre_runshjob.sh    
         - script: ./IN/same_syncRepos/gitRepo/script.sh  
+        - script: printenv
     on_success:      
       - script: echo 'test in on_success'
       - script: ls
@@ -47,19 +50,23 @@ jobs:
 
   - name: runcliscript
     type: runCLI
-    steps:
-      - IN: pipeline_scriptRepobb   
+    steps:      
+      - IN: plscript_RepoTagsnReleases  
       - IN: ship_dh_cli
       - IN: ship_aws_cli
       - IN: ship_gke_cli
       - IN: ship_ecr_cli
       - IN: ship_gcr_cli
       - IN: ship_quay_cli
+      - IN: t3runcli
       - IN: key-values
       - TASK:
-        - script: ./IN/pipeline_scriptRepobb/gitRepo/runcli/accInt.sh 
-        - script: echo "$key1"
-        - script: echo "$key2"
+        
+        - script: ./IN/plscript_RepoTagsnReleases/gitRepo/runcli/accInt.sh 
+       # - script: printenv
+        - script: echo $key1
+        - script: echo $key2
+        
         
   - name: manifest_dep
     type: manifest
@@ -75,6 +82,7 @@ jobs:
       - NOTIFY: notify-hipchat
       - NOTIFY: notify-irc
     steps:
+      
       - IN: manifest_dep
       - IN: ddc_cluster
       - IN: ddc_dopts
