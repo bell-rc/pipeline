@@ -1,5 +1,5 @@
 jobs:  
-  - name: runshscript
+  - name: runshscript  
     type: runSh
     steps:
       - IN: pipeline_scriptRepobb
