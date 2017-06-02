@@ -13,7 +13,7 @@ jobs:
         - script: ./IN/pipeline_scriptRepobb/gitRepo/runsh/testscript.sh
         - script: echo $key1
         - script: echo $key2
-      - OUT: test_out_img
+   #   - OUT: test_out_img
 
 
   - name: runsh_pre_jobscript
