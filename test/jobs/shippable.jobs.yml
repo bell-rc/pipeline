@@ -13,6 +13,7 @@ jobs:
         - script: ./IN/pipeline_scriptRepobb/gitRepo/runsh/testscript.sh
         - script: echo $key1
         - script: echo $key2
+    flags: runshscript
    #   - OUT: test_out_img
 
 
@@ -33,6 +34,7 @@ jobs:
         - script: ./IN/pipeline_scriptRepobb/gitRepo/runsh/pre_runshjob.sh    
         - script: ./IN/same_syncRepos/gitRepo/script.sh  
         - script: printenv
+    flags: runsh_pre_jobscript
     on_success:      
       - script: echo 'test in on_success'
       - script: ls
@@ -61,6 +63,7 @@ jobs:
       - IN: ship_quay_cli
       - IN: t3runcli
       - IN: key-values
+    flags: runcliscript
       - TASK:
         
         - script: ./IN/plscript_RepoTagsnReleases/gitRepo/runcli/accInt.sh 
@@ -74,7 +77,7 @@ jobs:
     steps:
       - IN: deploy_img       
       - IN: t1
-      
+    flags: manifest_dep
   - name: deploy_ddc
     type: deploy    
     on_start:
@@ -87,7 +90,8 @@ jobs:
       - IN: manifest_dep
       - IN: ddc_cluster
       - IN: ddc_dopts
-      - TASK: managed   
+      - TASK: managed  
+    flags: deploy_ddc
     on_success:         
       - NOTIFY: notify-slack
       - NOTIFY: notify-email
