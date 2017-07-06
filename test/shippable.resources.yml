@@ -10,6 +10,8 @@ resources:
           - master
           - pr
       buildOnPullRequest: true
+    flags:
+      - pipeline_scriptRepobb
       
   - name: plscript_RepoTagsnReleases
     type: gitRepo
@@ -20,6 +22,8 @@ resources:
         only:
           - v1.*
       buildOnTagPush: true
+    flags:
+      - plscript_RepoTagsnReleases
       
   - name: same_syncRepos
     type: gitRepo
@@ -27,6 +31,8 @@ resources:
     pointer:
       sourceName: "shiptest-rc-ow/pipeline"
       branch: master  
+    flags:
+      - same_syncRepos
       
   - name: sample_img
     type: image
@@ -35,6 +41,8 @@ resources:
       sourceName: "shippabledocker/pipelinev2"
     seed:
       versionName: "deploy.2"
+    flags:
+      - sample_img
   
   - name: deploy_img
     type: image
@@ -43,17 +51,23 @@ resources:
       sourceName: "shippabledocker/pipelinev2"
     seed:
       versionName: "deploy.1"
+    flags:
+      - deploy_img
       
   - name: ddc_cluster
     type: cluster
     integration: ship-ddc
     pointer:
       sourceName : "nothing"
+    flags:
+      - ddc_cluster
       
   - name: ddc_dopts
     type: dockerOptions
     version:
       memory: 128
+    flags:
+      - ddc_dopts
       
   - name: test_out_img
     type: image
@@ -62,14 +76,21 @@ resources:
       sourceName: "shippabledocker/ship_plv2node"
     seed:
       versionName: "latest"
+    flags:
+      - test_out_img
             
   - name: ship_dh
     type: integration
     integration: "ship-docker"  
+    flags:
+      - ship_dh
     
   - name: ship_aws
     type: integration
     integration: "ship-aws"
+    flags:
+      - ship_dh
+      - ship_dh2
 
   - name: test_params
     type: params
@@ -77,7 +98,9 @@ resources:
       params:
         TEST: rc
         secure: STW8SDUmEbHZXkMJSnq9DrqHj5FL9MlMi1H94DvyvLP+0ZwAixVlnFy3v8DcsEI2o6pEM6s9gCPFPX6v4kNxYAuEWtZSLwAxYYfdbDrvnjOTfJhVfFEVOgjUET1ratHbFIdKLDkRulPJGd8VUxecCPyLpyCqDRlJiBC3mbyVHF6ZPTSKwnkNeAzu84X+1lxwD3OGUgtyLCsJJJiXGDPonUgO1P8mxx44gn1jvkV6H2fRftaHAIV9p9LsSz3Si9Z51LaGgLg6YjXFzCa4bbkU3f//ELcPqkVqz6kkroqKzy4l1WxBUppUaCgl4nTFKyCDar/YB8AR4ugaU6Pcz/eRGQ== #DEV=alpha
-  
+    flags:
+      - test_params
+      
   - name: notify-slack
     type: notification
     integration: "notify-slack"
@@ -86,6 +109,8 @@ resources:
         - "#rc-public" 
         - "#rc-private"
         - "@shiptest-rc-ow"
+    flags:
+      - notify-slack
 
   - name: notify-email
     type: notification
@@ -94,6 +119,8 @@ resources:
       recipients: 
         - shiptest.rc.ow@gmail.com
         - shiptest.rc.me@gmail.com
+    flags:
+      - notify-email
   
   - name: notify-irc
     type: notification
@@ -102,6 +129,8 @@ resources:
       recipients: 
         - "webchat.irchighway.net#test-rc"
         - "webchat.irchighway.net#test"
+    flags:
+      - notify-irc
   
   - name: notify-hipchat
     type: notification
@@ -111,26 +140,36 @@ resources:
         - "#rc-public" 
         - "#rc-private"
         - "@shiptestrcow"
+    flags:
+      - notify-hipchat
         
   - name: ship_ecr_cli
     type: cliConfig
     integration: "ship-ecr"
     pointer:
       region: "us-east-1"
+    flags:
+      - ship_ecr_cli
       
   - name: ship_aws_cli
     type: cliConfig
     integration: "ship-aws"
     pointer:
       region: "us-east-1"
+    flags:
+      - ship_aws_cli
   
   - name: ship_dh_cli
     type: cliConfig
     integration: "ship-docker"
+    flags:
+      - ship_dh_cli
   
   - name: ship_gcr_cli
     type: cliConfig
     integration: "ship-gcr"
+    flags:
+      - ship_gcr_cli
     
   - name: ship_gke_cli
     type: cliConfig
@@ -138,11 +177,17 @@ resources:
     pointer:
       sourceName: "small-cluster"
       region: "us-east1-d"
+    flags:
+      - ship_gke_cli
     
   - name: ship_quay_cli
     type: cliConfig
     integration: "ship-quay"
+    flags:
+      - ship_quay_cli
     
   - name: key-values
     type: integration
     integration: "ship-keyvalue"
+    flags:
+      - key-values
