@@ -62,15 +62,13 @@ jobs:
       - IN: ship_gcr_cli
       - IN: ship_quay_cli
       - IN: t3runcli
-      - IN: key-values
-    flags: runcliscript
-      - TASK:
-        
+      - IN: key-values    
+      - TASK:        
         - script: ./IN/plscript_RepoTagsnReleases/gitRepo/runcli/accInt.sh 
        # - script: printenv
         - script: echo $key1
         - script: echo $key2
-        
+    flags: runcliscript    
         
   - name: manifest_dep
     type: manifest
@@ -78,6 +76,7 @@ jobs:
       - IN: deploy_img       
       - IN: t1
     flags: manifest_dep
+    
   - name: deploy_ddc
     type: deploy    
     on_start:
@@ -85,8 +84,7 @@ jobs:
       - NOTIFY: notify-email
       - NOTIFY: notify-hipchat
       - NOTIFY: notify-irc
-    steps:
-      
+    steps:      
       - IN: manifest_dep
       - IN: ddc_cluster
       - IN: ddc_dopts
