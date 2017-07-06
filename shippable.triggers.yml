@@ -3,13 +3,20 @@ triggers:
     type: trigger
     version:
       counter: 2
+    flags:
+      - t1
       
   - name: t2runsh
     type: trigger
     version:
       counter: 0
+    flags:
+      - t2runsh
       
   - name: t3runcli
     type: trigger
     version:
       counter: 0
+    flags:
+      - t3runcli
+      
