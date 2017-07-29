@@ -1,7 +1,9 @@
 jobs:  
   - name: runshscript  
     type: runSh
+    allowPublicAccess: true
     steps:
+    
       - IN: pipeline_scriptRepobb
         showBuildStatus: true
       - IN: ship_dh
@@ -53,6 +55,7 @@ jobs:
 
   - name: runcliscript
     type: runCLI
+    allowPublicAccess: true
     steps:      
       - IN: plscript_RepoTagsnReleases  
       - IN: ship_dh_cli
