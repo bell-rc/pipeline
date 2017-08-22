@@ -114,20 +114,24 @@ jobs:
         ######### uncomment below line to test if PACKER is able to build an AMI on AWS
         #- script: packer build -var "aws_access_key="$SHIP_AWS_CLI_INTEGRATION_AWS_ACCESS_KEY_ID"" -var "aws_secret_key="$SHIP_AWS_CLI_INTEGRATION_AWS_SECRET_ACCESS_KEY"" IN/pipeline_scriptRepobb/gitRepo/packer.json
         ######### Restore previous Terraform statefile
-        - script: |
-            cd /build/previousState
-            if [[ -f terraform.tfstate ]]; then 
-              cp terraform.tfstate $PIPELINE_SCRIPTREPOBB_STATE  
-            fi
+       # - script: |
+       #     cd /build/previousState
+        #    if [[ -f terraform.tfstate ]]; then 
+        #      cp terraform.tfstate $PIPELINE_SCRIPTREPOBB_STATE  
+       #     fi
         ######## Export AWS env variables for use by Terraform CLI
-        - script: >
-            export 
-            AWS_ACCESS_KEY_ID=$SHIP_AWS_CLI_INTEGRATION_AWS_ACCESS_KEY_ID 
-            AWS_SECRET_ACCESS_KEY=$SHIP_AWS_CLI_INTEGRATION_AWS_SECRET_ACCESS_KEY
-            AWS_DEFAULT_REGION=$SHIP_AWS_CLI_POINTER_REGION
+      #  - script: >
+       #     export 
+        #    AWS_ACCESS_KEY_ID=$SHIP_AWS_CLI_INTEGRATION_AWS_ACCESS_KEY_ID 
+         #   AWS_SECRET_ACCESS_KEY=$SHIP_AWS_CLI_INTEGRATION_AWS_SECRET_ACCESS_KEY
+          #  AWS_DEFAULT_REGION=$SHIP_AWS_CLI_POINTER_REGION
+        #- script: |
+         #   cd $PIPELINE_SCRIPTREPOBB_STATE
+          #  terraform apply
+        ######## Execute Terraform script to destroy
         - script: |
-            cd $PIPELINE_SCRIPTREPOBB_STATE
-            terraform apply
+            cd $MYGITHUBREPO_STATE  
+            terraform destroy -force
     on_success: 
       - script: echo "SUCCESS"
     on_failure:
