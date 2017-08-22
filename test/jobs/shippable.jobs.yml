@@ -1,7 +1,7 @@
 jobs:  
   - name: runshscript  
     type: runSh
-    allowPublicAccess: true
+   # allowPublicAccess: true
     steps:
     
       - IN: pipeline_scriptRepobb
@@ -55,7 +55,7 @@ jobs:
 
   - name: runcliscript
     type: runCLI
-    allowPublicAccess: true
+   # allowPublicAccess: true
     steps:      
       - IN: plscript_RepoTagsnReleases  
       - IN: ship_dh_cli
@@ -103,4 +103,37 @@ jobs:
       - NOTIFY: notify-email
       - NOTIFY: notify-hipchat
       - NOTIFY: notify-irc 
-      
+
+# Provision instances on AWS with Terraform
+  - name: provision_aws_terraform
+    type: runCLI
+    steps:
+      - IN: ship_aws_cli
+      - IN: pipeline_scriptRepobb
+      - TASK:
+        # Restore previous Terraform statefile
+        - script: |
+            cd /build/previousState
+            if [[ -f terraform.tfstate ]]; then 
+              cp terraform.tfstate $PIPELINE_SCRIPTREPOBB_STATE  
+            fi
+        # Export AWS env variables for use by Terraform CLI
+        - script: >
+            export 
+            AWS_ACCESS_KEY_ID=$SHIP_AWS_CLI_INTEGRATION_AWS_ACCESS_KEY_ID 
+            AWS_SECRET_ACCESS_KEY=$SHIP_AWS_CLI_INTEGRATION_AWS_SECRET_ACCESS_KEY
+            AWS_DEFAULT_REGION=$SHIP_AWS_CLI_POINTER_REGION
+        - script: |
+            cd $PIPELINE_SCRIPTREPOBB_STATE
+            terraform apply
+    on_success: 
+      - script: echo "SUCCESS"
+    on_failure:
+      - script: echo "FAILURE"
+    # save Terraform statefile for use in subsequent jobs
+    always:
+      - script: |
+          cd $PIPELINE_SCRIPTREPOBB_STATE_STATE
+          cp terraform.tfstate /build/state
+    flags:
+      - provision-aws-terraform
