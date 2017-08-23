@@ -110,7 +110,7 @@ jobs:
     steps:
       - IN: ship_aws_cli
       - IN: same_syncRepos
-        swtich: off
+        switch: off
       - IN: ship_dh_cli
       - IN: test_paramsCLI
       - IN: pipeline_scriptRepobb
