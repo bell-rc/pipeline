@@ -2,8 +2,7 @@ jobs:
   - name: runshscript  
     type: runSh
    # allowPublicAccess: true
-    steps:
-    
+    steps:    
       - IN: pipeline_scriptRepobb
         showBuildStatus: true
       - IN: ship_dh
@@ -113,6 +112,7 @@ jobs:
         switch: off
       - IN: ship_dh_cli
       - IN: test_paramsCLI
+      - IN: runshscript
       - IN: pipeline_scriptRepobb
       - TASK:
        #- script: echo "shipctl copy_file_from_prev_state <filename> <topath>. Copies the file to the path supplied from the state folder of the previos run of the Job that is currently running."
@@ -131,11 +131,11 @@ jobs:
         - script: echo "--->get_resource_id"
         - script: shipctl get_resource_id "ship_dh_cli"
         - script: echo "--->get_resource_meta"
-        - script: shipctl get_resource_meta "ship_dh_cli"
+        - script: shipctl get_resource_meta "test_paramsCLI"
         - script: echo "--->get_resource_operation"
         - script: shipctl get_resource_operation "ship_dh_cli"
         - script: echo "--->get_resource_state"
-        - script: shipctl get_resource_state "ship_dh_cli"
+        - script: shipctl get_resource_state "test_paramsCLI"
         - script: echo "--->get_resource_type"
         - script: shipctl get_resource_type "ship_dh_cli"
         - script: echo "--->get_resource_version_id"
