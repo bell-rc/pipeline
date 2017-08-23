@@ -124,7 +124,8 @@ jobs:
         - script: shipctl copy_resource_file_from_state "pipeline_scriptRepobb" "package.json" "IN/pipeline_scriptRepobb/gitRepo/copy.json"
         - script: echo "--->shipctl decrypt <source filename> <key filename>. Uses the key-file to decryt the contents of source-file. This is typically used to decrypt stuff encrypted using Shippable keys on the fly, similar to how our encryption works. It avoids you having to build encrypt-decrypt system"
         - script: shipctl decrypt "IN/same_syncRepos/gitRepo/key/accounts"
-        - script: echo "accounts=$accounts"  #accounts=decryptvalue secured value is in keys/accounts file
+        - script: echo "IN/same_syncRepos/gitRepo/key/accounts.decrypted" 
+        - script: echo "accounts=$accounts" #accounts=decryptvalue secured value is in keys/accounts file
        # - script: echo ""
        # - script: shipctl get_json_value "properties.json" "property2"
        # - script: echo ""
