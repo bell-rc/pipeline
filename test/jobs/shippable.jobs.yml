@@ -32,6 +32,7 @@ jobs:
         switch: off
       - IN: runshscript   
       - IN: same_syncRepos
+        switch: off
       - TASK:
         - script: ./IN/pipeline_scriptRepobb/gitRepo/runsh/pre_runshjob.sh    
         - script: ./IN/same_syncRepos/gitRepo/script.sh  
