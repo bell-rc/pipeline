@@ -16,7 +16,7 @@ jobs:
         - script: echo $key1
         - script: echo $key2
     flags: runshscript
-   #   - OUT: test_out_img
+      - OUT: test_out_img
 
 
   - name: runsh_pre_jobscript
@@ -127,10 +127,12 @@ jobs:
         - script: cat "IN/same_syncRepos/gitRepo/key/accounts.decrypted" #accounts=decryptvalue secured value is in keys/accounts file
       #  - script: echo "shipctl get_json_value <filename> <field name>. Gets the json property value from the specified file. Fieldname supports . notation and [n] for arrays"
       #failed  - script: shipctl get_json_value "IN/same_syncRepos/gitRepo/test/jobs/properties.json" "properties[0].property1"
-       # - script: echo ""
-        #- script: shipctl get_integration_resource_field "ship_dh_cli" "username"
+        - script: echo "get_integration_resource_field"
+        - script: shipctl get_integration_resource_field "ship_dh_cli" "username"
         - script: echo "--->get_resource_id"
         - script: shipctl get_resource_id "ship_dh_cli"
+        - script: echo "--->get_resource_meta"
+        - script: shipctl get_resource_meta "ship_dh_cli"
         - script: echo "--->get_resource_operation"
         - script: shipctl get_resource_operation "ship_dh_cli"
         - script: echo "--->get_resource_state"
@@ -138,11 +140,11 @@ jobs:
         - script: echo "--->get_resource_type"
         - script: shipctl get_resource_type "ship_dh_cli"
         - script: echo "--->get_resource_version_id"
-        - script: shipctl get_resource_version_id "ship_dh_cli"
+        - script: shipctl get_resource_version_id "runshscript"
         - script: echo "--->get_resource_version_name"
-        - script: shipctl get_resource_version_name "ship_dh_cli"
+        - script: shipctl get_resource_version_name "runshscript"
         - script: echo "--->resource_version_number"
-        - script: shipctl get_resource_version_number "ship_dh_cli"
+        - script: shipctl get_resource_version_number "runshscript"
         - script: echo "--->post_resource_state"
         - script: shipctl post_resource_state "test_paramsCLI" "TESTcli2" "rc2"
         - script: echo "TESTcli2=$TESTcli2"
@@ -151,15 +153,16 @@ jobs:
         - script: echo "TESTcli3=$TESTcli3"
         - script: echo "--->get_params_resource"
         - script: shipctl get_params_resource "test_paramsCLI" "TESTcli1"
+        - script: echo "TESTcli1=$TESTcli1"
         - script: echo "--->get_integration_resource"
         - script: shipctl get_integration_resource "ship_dh_cli"
     #    #- script: shipctl refresh_file_to_out_path <filename> <resource name>
     #    #- script: shipctl refresh_file_to_state <filename>
     #    #- script: shipctl replace <filename1> <filename2> <filenameN>
-        - script: echo "--->retry"
-        - script: shipctl retry "echo 'retry commad'"
+        - script: echo "--->retry command"
+        - script: shipctl retry "echo 'hello'"
         - script: echo "--->sanitize_shippable_string"
-        - script: shipctl sanitize_shippable_string "sanitize!@#"
+        - script: shipctl sanitize_shippable_string "sanitize!@#$%^&*()-=+_[]{};,.<>"
         - script: echo "--->shipctl to_uppercase"
         - script: shipctl to_uppercase "uppercase!@#"
         ######### uncomment below line to test if PACKER is able to build an AMI on AWS
