@@ -15,9 +15,8 @@ jobs:
         - script: ./IN/pipeline_scriptRepobb/gitRepo/runsh/testscript.sh
         - script: echo $key1
         - script: echo $key2
-    flags: runshscript
       - OUT: test_out_img
-
+    flags: runshscript
 
   - name: runsh_pre_jobscript
     type: runSh
