@@ -109,8 +109,35 @@ jobs:
     type: runCLI
     steps:
       - IN: ship_aws_cli
+      - IN: ship_dh_cli
+      - IN: test_paramsCLI
       - IN: pipeline_scriptRepobb
       - TASK:
+        - script: shipctl copy_file_from_prev_state "config.json" 
+        - script: shipctl copy_file_to_state "/test/jobs/testcopy.json"
+        - script: shipctl copy_resource_file_from_state "pipeline_scriptRepobb" "package.json" "IN/pipeline_scriptRepobb/gitRepo/copy.json"
+        - script: shipctl decrypt "properties.json" "/key/accounts"
+        - script: shipctl get_json_value "properties.json" "property2"
+        - script: shipctl get_integration_resource_field "ship_dh_cli" "username"
+        - script: shipctl get_resource_id "ship_dh_cli"
+        - script: shipctl get_resource_operation "ship_dh_cli"
+        - script: shipctl get_resource_state "ship_dh_cli"
+        - script: shipctl get_resource_type "ship_dh_cli"
+        - script: shipctl get_resource_version_id "ship_dh_cli"
+        - script: shipctl get_resource_version_name "ship_dh_cli"
+        - script: shipctl get_resource_version_number "ship_dh_cli"
+        - script: shipctl post_resource_state "test_paramsCLI" "TESTcli2" "rc2"
+        - script: echo "TESTcli2=$TESTcli2"
+        - script: shipctl put_resource_state "test_paramsCLI" "TESTcli3" "rc3"
+        - script: echo "TESTcli3=$TESTcli3"
+        - script: shipctl get_params_resource "test_paramsCLI" "TESTcli1"
+        - script: shipctl get_integration_resource "ship_dh_cli"
+        #- script: shipctl refresh_file_to_out_path <filename> <resource name>
+        #- script: shipctl refresh_file_to_state <filename>
+        #- script: shipctl replace <filename1> <filename2> <filenameN>
+        - script: shipctl retry "echo 'retry commad'"
+        - script: shipctl sanitize_shippable_string "sanitize!@#"
+        - script: shipctl to_uppercase "uppercase!@#"
         ######### uncomment below line to test if PACKER is able to build an AMI on AWS
         #- script: packer build -var "aws_access_key="$SHIP_AWS_CLI_INTEGRATION_AWS_ACCESS_KEY_ID"" -var "aws_secret_key="$SHIP_AWS_CLI_INTEGRATION_AWS_SECRET_ACCESS_KEY"" IN/pipeline_scriptRepobb/gitRepo/packer.json
         ######### Restore previous Terraform statefile
@@ -129,17 +156,18 @@ jobs:
          #   cd $PIPELINE_SCRIPTREPOBB_STATE
           #  terraform apply
         ######## Execute Terraform script to destroy
-        - script: |
-            cd $MYGITHUBREPO_STATE  
-            terraform destroy -force
+        #- script: |
+         #   cd $MYGITHUBREPO_STATE  
+         #   terraform destroy -force
     on_success: 
       - script: echo "SUCCESS"
     on_failure:
       - script: echo "FAILURE"
     ############# save Terraform statefile for use in subsequent jobs
-    always:
-      - script: |
-          cd $PIPELINE_SCRIPTREPOBB_STATE_STATE
-          cp terraform.tfstate /build/state
+    #always:
+    #  - script: |
+     #     cd $PIPELINE_SCRIPTREPOBB_STATE_STATE
+     #     cp terraform.tfstate /build/state
     flags:
       - provision-aws-terraform
+      
