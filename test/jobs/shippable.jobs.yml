@@ -125,8 +125,8 @@ jobs:
         - script: echo "--->shipctl decrypt <source filename> <key filename>. Uses the key-file to decryt the contents of source-file. This is typically used to decrypt stuff encrypted using Shippable keys on the fly, similar to how our encryption works. It avoids you having to build encrypt-decrypt system"
         - script: shipctl decrypt "IN/same_syncRepos/gitRepo/key/accounts"
         - script: cat "IN/same_syncRepos/gitRepo/key/accounts.decrypted" #accounts=decryptvalue secured value is in keys/accounts file
-      #  - script: echo "shipctl get_json_value <filename> <field name>. Gets the json property value from the specified file. Fieldname supports . notation and [n] for arrays"
-      #failed  - script: shipctl get_json_value "IN/same_syncRepos/gitRepo/test/jobs/properties.json" "properties[0].property1"
+        - script: echo "--->shipctl get_json_value <filename> <field name>. Gets the json property value from the specified file. Fieldname supports . notation and [n] for arrays"
+        - script: shipctl get_json_value "/test/jobs/properties.json" "properties[0].property1"
         - script: echo "get_integration_resource_field"
         - script: shipctl get_integration_resource_field "ship_dh_cli" "username"
         - script: echo "--->get_resource_id"
