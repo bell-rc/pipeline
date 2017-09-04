@@ -3,8 +3,8 @@
   "description": "Verify shipctl commands in pipeline repo",
     "authors": [
         {
-            "name": "shiptest-rc-ow"
-            "sourceController": "bitbucket"
+            "name": "shiptest-rc-ow",
+            "sourceController": "bitbucket",
             "branch": "master"
         }
     ],
