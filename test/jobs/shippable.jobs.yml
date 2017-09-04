@@ -117,6 +117,7 @@ jobs:
       - TASK:
         - script: echo "--->shipctl copy_file_from_prev_state <filename> <topath>. Copies the file to the path supplied from the state folder of the previos run of the Job that is currently running."
         - script: shipctl copy_file_from_prev_state "IN/same_syncRepos/gitRepo/test/jobs/config.json" "IN/same_syncRepos/gitRepo/test/jobs/config1.json"
+        - script: cat "IN/same_syncRepos/gitRepo/test/jobs/config1.json"
         - script: echo "--->shipctl copy_file_to_state <filename>. Copies the file to the state folder of the Job that is currently running. This will be available to the next run of the Job or any future Jobs that use this as an IN"
         - script: shipctl copy_file_to_state "IN/same_syncRepos/gitRepo/test/jobs/testcopy.json"
         - script: echo "--->shipctl copy_resource_file_from_state <resource name> <filename> <topath>. Copies the file from the Resource State that was supplied as IN into the path supplied"
