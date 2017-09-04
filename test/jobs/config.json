@@ -4,6 +4,7 @@
     "authors": [
         {
             "name": "shiptest-rc-ow"
+            "sourceController": "bitbucket"
         }
     ],
 }
