@@ -5,7 +5,8 @@
         {
             "name": "shiptest-rc-ow",
             "sourceController": "bitbucket",
-            "branch": "master"
+            "branch": "master",
+            "test": "rc"
         }
     ],
 }
