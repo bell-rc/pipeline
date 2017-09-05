@@ -8,7 +8,7 @@
             "name": "shiptest-rc-ow",
             "sourceController": "bitbucket",
             "branch": "master",
-            "test": "rc"
+            "test": "rctest"
         }
     ]
 }
