@@ -1,0 +1,12 @@
+{
+  "name": "pipeline_test_jobs_config",
+  "description": "Verify shipctl commands in pipeline repo",
+    "authors": [
+        {
+            "name": "shiptest-rc-ow",
+            "sourceController": "bitbucket",
+            "branch": "master",
+            "test": "rc"
+        }
+    ]
+}
