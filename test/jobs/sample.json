@@ -1,6 +1,7 @@
 {
   "name": "pipeline_test_jobs_config",
-  "versionName": "test",
+  "versionName": "versionNameFromSample.json",
+  "testEnv": "test",
   "description": "Verify shipctl commands in pipeline repo",
     "authors": [
         {
