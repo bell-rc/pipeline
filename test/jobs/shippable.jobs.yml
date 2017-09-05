@@ -157,7 +157,8 @@ jobs:
         - script: echo "--->get_integration_resource"
         - script: shipctl get_integration_resource "ship_dh_cli"
     #    #- script: shipctl refresh_file_to_out_path <filename> <resource name>
-    #    #- script: shipctl refresh_file_to_state <filename>
+        - script: echo "--->shipctl refresh_file_to_state <filename>. This will look in the present working directory for the <filename> and if present, copy that to current Job state. If it doesnt find the file, it will look in the state of the previos run of the Job and copy that. If it doesnt find it there, it just returns 0 exit code"
+        - script: shipctl refresh_file_to_state "/test/jobs/jconfig.json"
     #    #- script: shipctl replace <filename1> <filename2> <filenameN>
         - script: echo "--->retry command"
         - script: shipctl retry "echo 'hello'"
