@@ -78,7 +78,17 @@ resources:
       versionName: "latest"
     flags:
       - test_out_img
-            
+  
+  - name: test_out_img2
+    type: image
+    integration: ship-docker
+    pointer:
+      sourceName: "shippabledocker/ship_plv2node"
+    seed:
+      versionName: "latest"
+    flags:
+      - test_out_img2
+      
   - name: ship_dh
     type: integration
     integration: "ship-docker"  
@@ -199,3 +209,4 @@ resources:
     integration: "ship-keyvalue"
     flags:
       - key-values
+      
