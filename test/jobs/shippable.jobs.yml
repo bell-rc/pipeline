@@ -89,7 +89,7 @@ jobs:
     steps:      
       - IN: manifest_dep
       - IN: ddc_cluster
-      - IN: ddc_dopts
+      - IN: dockerOption1
       - TASK: managed  
     flags: deploy_ddc
     on_success:         
@@ -102,7 +102,61 @@ jobs:
       - NOTIFY: notify-email
       - NOTIFY: notify-hipchat
       - NOTIFY: notify-irc 
-
+  
+  - name: deploy_aws
+    type: deploy    
+    steps:      
+      - IN: manifest_dep
+      - IN: aws_cluster
+      - IN: dockerOption1
+      - TASK: managed  
+    flags: deploy_aws
+  
+  - name: deploy_awsIam
+    type: deploy    
+    steps:      
+      - IN: manifest_dep
+      - IN: awsIam_cluster
+      - IN: dockerOption1
+      - TASK: managed  
+    flags: deploy_awsIam
+  
+  - name: deploy_kubernetes
+    type: deploy    
+    steps:      
+      - IN: manifest_dep
+      - IN: kubernetes_cluster
+      - IN: dockerOption1
+      - TASK: managed  
+    flags: deploy_kubernetes
+    
+  - name: deploy_gke
+    type: deploy    
+    steps:      
+      - IN: manifest_dep
+      - IN: gke_cluster
+      - IN: dockerOption1
+      - TASK: managed  
+    flags: deploy_gke
+  
+  - name: deploy_tripub
+    type: deploy    
+    steps:      
+      - IN: manifest_dep
+      - IN: triton_cluster
+      - IN: dockerOption1
+      - TASK: managed  
+    flags: deploy_tripub
+  
+  - name: deploy_dcl
+    type: deploy    
+    steps:      
+      - IN: manifest_dep
+      - IN: dcl_cluster
+      - IN: dockerOption1
+      - TASK: managed  
+    flags: deploy_dcl
+    
 # Provision instances on AWS with Terraform
   - name: provision_aws_terraform_packer
     type: runCLI
