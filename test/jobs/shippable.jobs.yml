@@ -105,7 +105,8 @@ jobs:
 
 # Provision instances on AWS with Terraform
   - name: provision_aws_terraform_packer
-    type: runCLI
+    type: runSh
+    allowPublicAccess: false #never make this job allowPublicAccess: true since we have sensitive data
     steps:
       - IN: ship_aws_cli
       - IN: same_syncRepos
