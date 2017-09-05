@@ -61,6 +61,55 @@ resources:
       sourceName : "nothing"
     flags:
       - ddc_cluster
+  
+  - name: aws_cluster
+    type: cluster
+    integration: ship-aws
+    pointer:
+      sourceName : "testCL"
+      region: "us-west-2"
+  
+  - name: awsIam_cluster
+    type: cluster
+    integration: ship-aws
+    pointer:
+      sourceName : "testCL"
+      region: "us-west-2"
+      
+ # - name: dep-ecsClusterLoadBalancer
+ #   type: cluster
+ #   integration: ship-aws
+  #  pointer:
+  #    sourceName : "loadBalanceTest"
+   #   region: "us-east-1"
+  
+  - name: kubernetes_cluster
+    type: cluster
+    integration: "ship-kubernetes"
+  
+ # - name: kubernetes-clusternew
+ #   type: cluster
+ #   integration: "kubernetes_new17aug2017"
+    
+  - name: gke_cluster
+    type: cluster
+    integration: ship-gke
+    pointer:
+      sourceName: "small-cluster" #name of the cluster we are deploying.
+      region: "us-east1-d"
+      
+  - name: triton_cluster
+    type: cluster
+    integration: ship-tripub
+    pointer:
+      sourceName: "default" # we can give anything it deploy instances based on region not by cluster name
+      region: "us-east-2"
+  
+  - name: dcl_cluster
+    type: cluster
+    integration: ship-dcl
+    pointer:
+      sourceName : "cluster-dcl"
       
   - name: dockerOption1
     type: dockerOptions
