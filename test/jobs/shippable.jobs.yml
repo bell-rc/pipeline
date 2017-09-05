@@ -116,8 +116,8 @@ jobs:
       - IN: pipeline_scriptRepobb
       - TASK:
         - script: echo "--->shipctl copy_file_from_prev_state <filename> <topath>. Copies the file to the path supplied from the state folder of the previos run of the Job that is currently running."
-        - script: shipctl copy_file_from_prev_state "test/jobs/config.json" "IN/pipeline_scriptRepobb/gitRepo/test/jobs/config1.json"
-        - script: cat "IN/pipeline_scriptRepobb/gitRepo/test/jobs/config1.json"
+        - script: shipctl copy_file_from_prev_state "test/jobs/config.json" "IN/same_syncRepos/gitRepo/test/jobs/config1.json"
+        - script: cat "IN/same_syncRepos/gitRepo/test/jobs/config1.json"
         - script: echo "--->shipctl copy_file_to_state <filename>. Copies the file to the state folder of the Job that is currently running. This will be available to the next run of the Job or any future Jobs that use this as an IN"
         - script: shipctl copy_file_to_state "IN/same_syncRepos/gitRepo/test/jobs/testcopy.json"
         - script: echo "--->shipctl copy_resource_file_from_state <resource name> <filename> <topath>. Copies the file from the Resource State that was supplied as IN into the path supplied"
@@ -126,7 +126,7 @@ jobs:
         - script: shipctl decrypt "IN/same_syncRepos/gitRepo/key/accounts"
         - script: cat "IN/same_syncRepos/gitRepo/key/accounts.decrypted" #accounts=decryptvalue secured value is in keys/accounts file
         - script: echo "--->shipctl get_json_value <filename> <field name>. Gets the json property value from the specified file. Fieldname supports . notation and [n] for arrays"
-        - script: shipctl get_json_value "IN/pipeline_scriptRepobb/gitRepo/test/jobs/properties.json" "properties[0].property1"
+        - script: shipctl get_json_value "IN/same_syncRepos/gitRepo/test/jobs/properties.json" "properties[0].property1"
         - script: echo "get_integration_resource_field"
         - script: shipctl get_integration_resource_field "ship_dh_cli" "username"
         - script: echo "--->get_resource_id"
