@@ -165,7 +165,7 @@ jobs:
         - script: echo "--->shipctl refresh_file_to_state <filename>. This will look in the present working directory for the <filename> and if present, copy that to current Job state. If it doesnt find the file, it will look in the state of the previos run of the Job and copy that. If it doesnt find it there, it just returns 0 exit code"
         - script: shipctl refresh_file_to_state "/test/jobs/config.json"
         - script: echo "shipctl replace <filename1> <filename2> <filenameN>. If you have a config file/s with a bunch of variables, you can use this utility to replace them all in one shot based on your current shell env. Your files need to have the placeholders in this format; $ENVIRONMENT_VARIABLE_NAME or ${ENVIRONMENT_VARIABLE_NAME}. The second option is the recommended one"
-        - script: shipctl replace "config.json" "sample.json"
+        - script: shipctl replace "IN/same_syncRepos/gitRepo/test/jobs/config.json" "IN/same_syncRepos/gitRepo/test/jobs/sample.json"
         - script: echo "--->retry command"
         - script: shipctl retry "echo 'hello'"
         - script: echo "--->sanitize_shippable_string"
