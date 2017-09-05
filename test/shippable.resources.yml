@@ -62,7 +62,7 @@ resources:
     flags:
       - ddc_cluster
       
-  - name: ddc_dopts
+  - name: dockerOption1
     type: dockerOptions
     version:
       memory: 128
