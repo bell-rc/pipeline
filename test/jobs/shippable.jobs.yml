@@ -127,53 +127,52 @@ jobs:
   - name: deploy_awsreplace
     type: deploy    
     steps:      
-      - IN: manifest_replace
-      
+      - IN: manifest_replace      
       - IN: aws_cluster
       - IN: dockerOption1
       - TASK: managed  
     flags: deploy_aws
   
-  - name: deploy_awsIam
+  - name: deploy_awsIamreplace
     type: deploy    
     steps:      
-      - IN: manifest_dep
+      - IN: manifest_replace 
       - IN: awsIam_cluster
       - IN: dockerOption1
       - TASK: managed  
     flags: deploy_awsIam
   
-  - name: deploy_kubernetes
+  - name: deploy_kubernetesreplace
     type: deploy    
     steps:      
-      - IN: manifest_dep
+      - IN: manifest_replace 
       - IN: kubernetes_cluster
       - IN: dockerOption1
       - TASK: managed  
     flags: deploy_kubernetes
     
-  - name: deploy_gke
+  - name: deploy_gkereplace
     type: deploy    
     steps:      
-      - IN: manifest_dep
+      - IN: manifest_replace
       - IN: gke_cluster
       - IN: dockerOption1
       - TASK: managed  
     flags: deploy_gke
   
-  - name: deploy_tripub
+  - name: deploy_tripubreplace
     type: deploy    
     steps:      
-      - IN: manifest_dep
+      - IN: manifest_replace
       - IN: triton_cluster
       - IN: dockerOption1
       - TASK: managed  
     flags: deploy_tripub
   
-  - name: deploy_dcl
+  - name: deploy_dclreplace
     type: deploy    
     steps:      
-      - IN: manifest_dep
+      - IN: manifest_replace
       - IN: dcl_cluster
       - IN: dockerOption1
       - TASK: managed  
