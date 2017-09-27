@@ -129,6 +129,9 @@ jobs:
     workflow: parallel
     steps:      
       - IN: manifest_bluegreen
+      - IN: manifest_dep
+      - IN: test_replica
+      - IN: test_params
       - IN: aws_cluster
       - IN: dockerOption1
       - TASK: managed  
@@ -139,6 +142,9 @@ jobs:
     workflow: parallel
     steps:      
       - IN: manifest_bluegreen 
+      - IN: manifest_dep
+      - IN: test_replica
+      - IN: test_params
       - IN: awsIam_cluster
       - IN: dockerOption1
       - TASK: managed  
@@ -149,6 +155,9 @@ jobs:
     workflow: parallel
     steps:      
       - IN: manifest_bluegreen 
+      - IN: manifest_dep
+      - IN: test_replica
+      - IN: test_params
       - IN: kubernetes_cluster
       - IN: dockerOption1
       - TASK: managed  
@@ -159,6 +168,9 @@ jobs:
     workflow: parallel
     steps:      
       - IN: manifest_bluegreen
+      - IN: manifest_dep
+      - IN: test_replica
+      - IN: test_params
       - IN: gke_cluster
       - IN: dockerOption1
       - TASK: managed  
@@ -169,6 +181,9 @@ jobs:
     workflow: parallel
     steps:      
       - IN: manifest_bluegreen
+      - IN: manifest_dep
+      - IN: test_replica
+      - IN: test_params
       - IN: triton_cluster
       - IN: dockerOption1
       - TASK: managed  
@@ -179,6 +194,9 @@ jobs:
     workflow: parallel
     steps:      
       - IN: manifest_bluegreen
+      - IN: manifest_dep
+      - IN: test_replica
+      - IN: test_params
       - IN: dcl_cluster
       - IN: dockerOption1
       - TASK: managed  
@@ -189,6 +207,9 @@ jobs:
     workflow: parallel
     steps:      
       - IN: manifest_bluegreen
+      - IN: manifest_dep
+      - IN: test_replica
+      - IN: test_params
       - IN: ddc_cluster
       - IN: dockerOption1
       - TASK: managed  
@@ -199,7 +220,10 @@ jobs:
     method: upgrade
     workflow: serial
     steps:      
-      - IN: manifest_upgrade     
+      - IN: manifest_upgrade  
+      - IN: manifest_dep
+      - IN: test_replica
+      - IN: test_params
       - IN: aws_cluster
       - IN: dockerOption1
       - TASK: managed  
@@ -211,6 +235,9 @@ jobs:
     workflow: serial
     steps:      
       - IN: manifest_upgrade
+      - IN: manifest_dep
+      - IN: test_replica
+      - IN: test_params
       - IN: awsIam_cluster
       - IN: dockerOption1
       - TASK: managed  
@@ -222,6 +249,9 @@ jobs:
     workflow: serial
     steps:      
       - IN: manifest_upgrade
+      - IN: manifest_dep
+      - IN: test_replica
+      - IN: test_params
       - IN: kubernetes_cluster
       - IN: dockerOption1
       - TASK: managed  
@@ -233,6 +263,9 @@ jobs:
     workflow: serial
     steps:      
       - IN: manifest_upgrade
+      - IN: manifest_dep
+      - IN: test_replica
+      - IN: test_params
       - IN: gke_cluster
       - IN: dockerOption1
       - TASK: managed  
@@ -244,6 +277,9 @@ jobs:
     workflow: serial
     steps:      
       - IN: manifest_upgrade
+      - IN: manifest_dep
+      - IN: test_replica
+      - IN: test_params
       - IN: triton_cluster
       - IN: dockerOption1
       - TASK: managed  
@@ -255,6 +291,9 @@ jobs:
     workflow: serial
     steps:      
       - IN: manifest_upgrade
+      - IN: manifest_dep
+      - IN: test_replica
+      - IN: test_params
       - IN: dcl_cluster
       - IN: dockerOption1
       - TASK: managed  
@@ -266,6 +305,9 @@ jobs:
     workflow: serial
     steps:      
       - IN: manifest_upgrade
+      - IN: manifest_dep
+      - IN: test_replica
+      - IN: test_params
       - IN: ddc_cluster
       - IN: dockerOption1
       - TASK: managed  
@@ -276,7 +318,10 @@ jobs:
     method: replace
     workflow: parallel
     steps:      
-      - IN: manifest_replace      
+      - IN: manifest_replace  
+      - IN: manifest_dep
+      - IN: test_replica
+      - IN: test_params
       - IN: aws_cluster
       - IN: dockerOption1
       - TASK: managed  
@@ -287,7 +332,10 @@ jobs:
     method: replace
     workflow: parallel
     steps:      
-      - IN: manifest_replace 
+      - IN: manifest_replace
+      - IN: manifest_dep
+      - IN: test_replica
+      - IN: test_params
       - IN: awsIam_cluster
       - IN: dockerOption1
       - TASK: managed  
@@ -299,6 +347,9 @@ jobs:
     workflow: parallel
     steps:      
       - IN: manifest_replace 
+      - IN: manifest_dep
+      - IN: test_replica
+      - IN: test_params
       - IN: kubernetes_cluster
       - IN: dockerOption1
       - TASK: managed  
@@ -310,6 +361,9 @@ jobs:
     workflow: parallel
     steps:      
       - IN: manifest_replace
+      - IN: manifest_dep
+      - IN: test_replica
+      - IN: test_params
       - IN: gke_cluster
       - IN: dockerOption1
       - TASK: managed  
@@ -321,6 +375,9 @@ jobs:
     workflow: parallel
     steps:      
       - IN: manifest_replace
+      - IN: manifest_dep
+      - IN: test_replica
+      - IN: test_params
       - IN: triton_cluster
       - IN: dockerOption1
       - TASK: managed  
@@ -332,6 +389,9 @@ jobs:
     workflow: parallel
     steps:      
       - IN: manifest_replace
+      - IN: manifest_dep
+      - IN: test_replica
+      - IN: test_params
       - IN: dcl_cluster
       - IN: dockerOption1
       - TASK: managed  
@@ -343,6 +403,9 @@ jobs:
     workflow: parallel
     steps:      
       - IN: manifest_replace
+      - IN: manifest_dep
+      - IN: test_replica
+      - IN: test_params
       - IN: ddc_cluster
       - IN: dockerOption1
       - TASK: managed  
@@ -449,3 +512,4 @@ jobs:
      #     cp terraform.tfstate /build/state
     flags:
       - provision-aws-terraform
+      
