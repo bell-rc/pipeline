@@ -124,8 +124,157 @@ jobs:
       - NOTIFY: notify-hipchat
       - NOTIFY: notify-irc 
   
-  - name: deploy_awsreplace
+  - name: deploy_awsbluegreen
+    type: deploy
+    workflow: parallel
+    steps:      
+      - IN: manifest_bluegreen
+      - IN: aws_cluster
+      - IN: dockerOption1
+      - TASK: managed  
+    flags: deploy_aws
+  
+  - name: deploy_awsIambluegreen
+    type: deploy 
+    workflow: parallel
+    steps:      
+      - IN: manifest_bluegreen 
+      - IN: awsIam_cluster
+      - IN: dockerOption1
+      - TASK: managed  
+    flags: deploy_awsIam
+  
+  - name: deploy_kubernetesbluegreen
+    type: deploy   
+    workflow: parallel
+    steps:      
+      - IN: manifest_bluegreen 
+      - IN: kubernetes_cluster
+      - IN: dockerOption1
+      - TASK: managed  
+    flags: deploy_kubernetes
+    
+  - name: deploy_gkebluegreen
     type: deploy    
+    workflow: parallel
+    steps:      
+      - IN: manifest_bluegreen
+      - IN: gke_cluster
+      - IN: dockerOption1
+      - TASK: managed  
+    flags: deploy_gke
+  
+  - name: deploy_tripubbluegreen
+    type: deploy  
+    workflow: parallel
+    steps:      
+      - IN: manifest_bluegreen
+      - IN: triton_cluster
+      - IN: dockerOption1
+      - TASK: managed  
+    flags: deploy_tripub
+  
+  - name: deploy_dclbluegreen
+    type: deploy 
+    workflow: parallel
+    steps:      
+      - IN: manifest_bluegreen
+      - IN: dcl_cluster
+      - IN: dockerOption1
+      - TASK: managed  
+    flags: deploy_dcl
+  
+  - name: deploy_ddcbluegreen
+    type: deploy   
+    workflow: parallel
+    steps:      
+      - IN: manifest_bluegreen
+      - IN: ddc_cluster
+      - IN: dockerOption1
+      - TASK: managed  
+    flags: deploy_ddc
+    
+  - name: deploy_awsupgrade
+    type: deploy
+    method: upgrade
+    workflow: serial
+    steps:      
+      - IN: manifest_upgrade     
+      - IN: aws_cluster
+      - IN: dockerOption1
+      - TASK: managed  
+    flags: deploy_aws
+  
+  - name: deploy_awsIamupgrade
+    type: deploy   
+    method: upgrade
+    workflow: serial
+    steps:      
+      - IN: manifest_upgrade
+      - IN: awsIam_cluster
+      - IN: dockerOption1
+      - TASK: managed  
+    flags: deploy_awsIam
+  
+  - name: deploy_kubernetesupgrade
+    type: deploy 
+    method: upgrade
+    workflow: serial
+    steps:      
+      - IN: manifest_upgrade
+      - IN: kubernetes_cluster
+      - IN: dockerOption1
+      - TASK: managed  
+    flags: deploy_kubernetes
+    
+  - name: deploy_gkeupgrade
+    type: deploy   
+    method: upgrade
+    workflow: serial
+    steps:      
+      - IN: manifest_upgrade
+      - IN: gke_cluster
+      - IN: dockerOption1
+      - TASK: managed  
+    flags: deploy_gke
+  
+  - name: deploy_tripubupgrade
+    type: deploy 
+    method: upgrade
+    workflow: serial
+    steps:      
+      - IN: manifest_upgrade
+      - IN: triton_cluster
+      - IN: dockerOption1
+      - TASK: managed  
+    flags: deploy_tripub
+  
+  - name: deploy_dclupgrade
+    type: deploy 
+    method: upgrade
+    workflow: serial
+    steps:      
+      - IN: manifest_upgrade
+      - IN: dcl_cluster
+      - IN: dockerOption1
+      - TASK: managed  
+    flags: deploy_dcl
+  
+  - name: deploy_ddcupgrade
+    type: deploy 
+    method: upgrade
+    workflow: serial
+    steps:      
+      - IN: manifest_upgrade
+      - IN: ddc_cluster
+      - IN: dockerOption1
+      - TASK: managed  
+    flags: deploy_ddc
+    
+  - name: deploy_awsreplace
+    type: deploy
+    method: replace
+    workflow: parallel
     steps:      
       - IN: manifest_replace      
       - IN: aws_cluster
@@ -134,7 +283,9 @@ jobs:
     flags: deploy_aws
   
   - name: deploy_awsIamreplace
-    type: deploy    
+    type: deploy 
+    method: replace
+    workflow: parallel
     steps:      
       - IN: manifest_replace 
       - IN: awsIam_cluster
@@ -143,7 +294,9 @@ jobs:
     flags: deploy_awsIam
   
   - name: deploy_kubernetesreplace
-    type: deploy    
+    type: deploy   
+    method: replace
+    workflow: parallel
     steps:      
       - IN: manifest_replace 
       - IN: kubernetes_cluster
@@ -153,6 +306,8 @@ jobs:
     
   - name: deploy_gkereplace
     type: deploy    
+    method: replace
+    workflow: parallel
     steps:      
       - IN: manifest_replace
       - IN: gke_cluster
@@ -161,7 +316,9 @@ jobs:
     flags: deploy_gke
   
   - name: deploy_tripubreplace
-    type: deploy    
+    type: deploy  
+    method: replace
+    workflow: parallel
     steps:      
       - IN: manifest_replace
       - IN: triton_cluster
@@ -170,13 +327,26 @@ jobs:
     flags: deploy_tripub
   
   - name: deploy_dclreplace
-    type: deploy    
+    type: deploy 
+    method: replace
+    workflow: parallel
     steps:      
       - IN: manifest_replace
       - IN: dcl_cluster
       - IN: dockerOption1
       - TASK: managed  
     flags: deploy_dcl
+  
+  - name: deploy_ddcreplace
+    type: deploy   
+    method: replace
+    workflow: parallel
+    steps:      
+      - IN: manifest_replace
+      - IN: ddc_cluster
+      - IN: dockerOption1
+      - TASK: managed  
+    flags: deploy_ddc
     
 # Provision instances on AWS with Terraform
   - name: provision_aws_terraform_packer
