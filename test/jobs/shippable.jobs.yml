@@ -78,6 +78,27 @@ jobs:
       - IN: deploy_img       
       - IN: t1
     flags: manifest_dep
+  
+  - name: manifest_upgrade
+    type: manifest
+    steps:
+      - IN: deploy_img1       
+      - IN: t1
+    flags: manifest_upgrade
+  
+  - name: manifest_replace
+    type: manifest
+    steps:
+      - IN: deploy_img2      
+      - IN: t1
+    flags: manifest_replace
+  
+  - name: manifest_bluegreen
+    type: manifest
+    steps:
+      - IN: deploy_img3   
+      - IN: t1
+    flags: manifest_bluegreen
     
   - name: deploy_ddc
     type: deploy    
@@ -103,10 +124,11 @@ jobs:
       - NOTIFY: notify-hipchat
       - NOTIFY: notify-irc 
   
-  - name: deploy_aws
+  - name: deploy_awsreplace
     type: deploy    
     steps:      
-      - IN: manifest_dep
+      - IN: manifest_replace
+      
       - IN: aws_cluster
       - IN: dockerOption1
       - TASK: managed  
