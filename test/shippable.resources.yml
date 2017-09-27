@@ -48,7 +48,7 @@ resources:
     type: image
     integration: ship-docker
     pointer:
-      sourceName: "busybox"
+      sourceName: "nginx"
     seed:
       versionName: "latest"
     flags:
