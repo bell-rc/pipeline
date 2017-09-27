@@ -53,6 +53,30 @@ resources:
       versionName: "deploy.1"
     flags:
       - deploy_img
+  
+  - name: deploy_img1
+    type: image
+    integration: ship-docker
+    pointer:
+      sourceName: "shippabledocker/pipelinev2"
+    seed:
+      versionName: "deploy.1"
+  
+  - name: deploy_img2
+    type: image
+    integration: ship-docker
+    pointer:
+      sourceName: "shippabledocker/pipelinev2"
+    seed:
+      versionName: "deploy.2"
+  
+  - name: deploy_img3
+    type: image
+    integration: ship-docker
+    pointer:
+      sourceName: "shippabledocker/pipelinev2"
+    seed:
+      versionName: "deploy.3"
       
   - name: ddc_cluster
     type: cluster
