@@ -48,9 +48,9 @@ resources:
     type: image
     integration: ship-docker
     pointer:
-      sourceName: "shippabledocker/pipelinev2"
+      sourceName: "busybox"
     seed:
-      versionName: "deploy.1"
+      versionName: "latest"
     flags:
       - deploy_img
   
