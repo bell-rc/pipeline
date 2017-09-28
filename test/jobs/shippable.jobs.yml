@@ -137,7 +137,7 @@ jobs:
       - TASK: managed  
     flags: deploy_aws
   
-  - name: deploy_awsIambluegreen
+  - name: deploy-awsIambluegreen
     type: deploy 
     workflow: parallel
     steps:      
@@ -150,7 +150,7 @@ jobs:
       - TASK: managed  
     flags: deploy_awsIam
   
-  - name: deploy_kubernetesbluegreen
+  - name: deploy-kubernetesbluegreen
     type: deploy   
     workflow: parallel
     steps:      
@@ -163,7 +163,7 @@ jobs:
       - TASK: managed  
     flags: deploy_kubernetes
     
-  - name: deploy_gkebluegreen
+  - name: deploy-gkebluegreen
     type: deploy    
     workflow: parallel
     steps:      
@@ -176,7 +176,7 @@ jobs:
       - TASK: managed  
     flags: deploy_gke
   
-  - name: deploy_tripubbluegreen
+  - name: deploy-tripubbluegreen
     type: deploy  
     workflow: parallel
     steps:      
@@ -189,7 +189,7 @@ jobs:
       - TASK: managed  
     flags: deploy_tripub
   
-  - name: deploy_dclbluegreen
+  - name: deploy-dclbluegreen
     type: deploy 
     workflow: parallel
     steps:      
@@ -202,7 +202,7 @@ jobs:
       - TASK: managed  
     flags: deploy_dcl
   
-  - name: deploy_ddcbluegreen
+  - name: deploy-ddcbluegreen
     type: deploy   
     workflow: parallel
     steps:      
@@ -215,7 +215,7 @@ jobs:
       - TASK: managed  
     flags: deploy_ddc
     
-  - name: deploy_awsupgrade
+  - name: deploy-awsupgrade
     type: deploy
     method: upgrade
     workflow: serial
@@ -229,7 +229,7 @@ jobs:
       - TASK: managed  
     flags: deploy_aws
   
-  - name: deploy_awsIamupgrade
+  - name: deploy-awsIamupgrade
     type: deploy   
     method: upgrade
     workflow: serial
@@ -243,7 +243,7 @@ jobs:
       - TASK: managed  
     flags: deploy_awsIam
   
-  - name: deploy_kubernetesupgrade
+  - name: deploy-kubernetesupgrade
     type: deploy 
     method: upgrade
     workflow: serial
@@ -257,7 +257,7 @@ jobs:
       - TASK: managed  
     flags: deploy_kubernetes
     
-  - name: deploy_gkeupgrade
+  - name: deploy-gkeupgrade
     type: deploy   
     method: upgrade
     workflow: serial
@@ -271,7 +271,7 @@ jobs:
       - TASK: managed  
     flags: deploy_gke
   
-  - name: deploy_tripubupgrade
+  - name: deploy-tripubupgrade
     type: deploy 
     method: upgrade
     workflow: serial
@@ -285,7 +285,7 @@ jobs:
       - TASK: managed  
     flags: deploy_tripub
   
-  - name: deploy_dclupgrade
+  - name: deploy-dclupgrade
     type: deploy 
     method: upgrade
     workflow: serial
@@ -299,7 +299,7 @@ jobs:
       - TASK: managed  
     flags: deploy_dcl
   
-  - name: deploy_ddcupgrade
+  - name: deploy-ddcupgrade
     type: deploy 
     method: upgrade
     workflow: serial
@@ -313,7 +313,7 @@ jobs:
       - TASK: managed  
     flags: deploy_ddc
     
-  - name: deploy_awsreplace
+  - name: deploy-awsreplace
     type: deploy
     method: replace
     workflow: parallel
@@ -327,7 +327,7 @@ jobs:
       - TASK: managed  
     flags: deploy_aws
   
-  - name: deploy_awsIamreplace
+  - name: deploy-awsIamreplace
     type: deploy 
     method: replace
     workflow: parallel
@@ -341,7 +341,7 @@ jobs:
       - TASK: managed  
     flags: deploy_awsIam
   
-  - name: deploy_kubernetesreplace
+  - name: deploy-kubernetesreplace
     type: deploy   
     method: replace
     workflow: parallel
@@ -355,7 +355,7 @@ jobs:
       - TASK: managed  
     flags: deploy_kubernetes
     
-  - name: deploy_gkereplace
+  - name: deploy-gkereplace
     type: deploy    
     method: replace
     workflow: parallel
@@ -369,7 +369,7 @@ jobs:
       - TASK: managed  
     flags: deploy_gke
   
-  - name: deploy_tripubreplace
+  - name: deploy-tripubreplace
     type: deploy  
     method: replace
     workflow: parallel
@@ -383,7 +383,7 @@ jobs:
       - TASK: managed  
     flags: deploy_tripub
   
-  - name: deploy_dclreplace
+  - name: deploy-dclreplace
     type: deploy 
     method: replace
     workflow: parallel
@@ -397,7 +397,7 @@ jobs:
       - TASK: managed  
     flags: deploy_dcl
   
-  - name: deploy_ddcreplace
+  - name: deploy-ddcreplace
     type: deploy   
     method: replace
     workflow: parallel
