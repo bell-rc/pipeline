@@ -72,28 +72,28 @@ jobs:
         - script: echo $key2
     flags: runcliscript    
         
-  - name: manifest_dep
+  - name: manifest-dep
     type: manifest
     steps:
       - IN: deploy_img       
       - IN: t1
     flags: manifest_dep
   
-  - name: manifest_upgrade
+  - name: manifest-upgrade
     type: manifest
     steps:
       - IN: deploy_img1       
       - IN: t1
     flags: manifest_upgrade
   
-  - name: manifest_replace
+  - name: manifest-replace
     type: manifest
     steps:
       - IN: deploy_img2      
       - IN: t1
     flags: manifest_replace
   
-  - name: manifest_bluegreen
+  - name: manifest-bluegreen
     type: manifest
     steps:
       - IN: deploy_img3   
@@ -124,12 +124,12 @@ jobs:
       - NOTIFY: notify-hipchat
       - NOTIFY: notify-irc 
   
-  - name: deploy_awsbluegreen
+  - name: deploy-awsbluegreen
     type: deploy
     workflow: parallel
     steps:      
-      - IN: manifest_bluegreen
-      - IN: manifest_dep
+      - IN: manifest-bluegreen
+      - IN: manifest-dep
       - IN: test_replica
       - IN: test_params
       - IN: aws_cluster
@@ -141,8 +141,8 @@ jobs:
     type: deploy 
     workflow: parallel
     steps:      
-      - IN: manifest_bluegreen 
-      - IN: manifest_dep
+      - IN: manifest-bluegreen
+      - IN: manifest-dep
       - IN: test_replica
       - IN: test_params
       - IN: awsIam_cluster
@@ -154,8 +154,8 @@ jobs:
     type: deploy   
     workflow: parallel
     steps:      
-      - IN: manifest_bluegreen 
-      - IN: manifest_dep
+      - IN: manifest-bluegreen
+      - IN: manifest-dep
       - IN: test_replica
       - IN: test_params
       - IN: kubernetes_cluster
@@ -167,8 +167,8 @@ jobs:
     type: deploy    
     workflow: parallel
     steps:      
-      - IN: manifest_bluegreen
-      - IN: manifest_dep
+      - IN: manifest-bluegreen
+      - IN: manifest-dep
       - IN: test_replica
       - IN: test_params
       - IN: gke_cluster
@@ -180,8 +180,8 @@ jobs:
     type: deploy  
     workflow: parallel
     steps:      
-      - IN: manifest_bluegreen
-      - IN: manifest_dep
+      - IN: manifest-bluegreen
+      - IN: manifest-dep
       - IN: test_replica
       - IN: test_params
       - IN: triton_cluster
@@ -193,8 +193,8 @@ jobs:
     type: deploy 
     workflow: parallel
     steps:      
-      - IN: manifest_bluegreen
-      - IN: manifest_dep
+      - IN: manifest-bluegreen
+      - IN: manifest-dep
       - IN: test_replica
       - IN: test_params
       - IN: dcl_cluster
@@ -206,8 +206,8 @@ jobs:
     type: deploy   
     workflow: parallel
     steps:      
-      - IN: manifest_bluegreen
-      - IN: manifest_dep
+      - IN: manifest-bluegreen
+      - IN: manifest-dep
       - IN: test_replica
       - IN: test_params
       - IN: ddc_cluster
@@ -220,8 +220,8 @@ jobs:
     method: upgrade
     workflow: serial
     steps:      
-      - IN: manifest_upgrade  
-      - IN: manifest_dep
+      - IN: manifest-upgrade
+      - IN: manifest-dep
       - IN: test_replica
       - IN: test_params
       - IN: aws_cluster
@@ -234,8 +234,8 @@ jobs:
     method: upgrade
     workflow: serial
     steps:      
-      - IN: manifest_upgrade
-      - IN: manifest_dep
+      - IN: manifest-upgrade
+      - IN: manifest-dep
       - IN: test_replica
       - IN: test_params
       - IN: awsIam_cluster
@@ -248,8 +248,8 @@ jobs:
     method: upgrade
     workflow: serial
     steps:      
-      - IN: manifest_upgrade
-      - IN: manifest_dep
+      - IN: manifest-upgrade
+      - IN: manifest-dep
       - IN: test_replica
       - IN: test_params
       - IN: kubernetes_cluster
@@ -262,8 +262,8 @@ jobs:
     method: upgrade
     workflow: serial
     steps:      
-      - IN: manifest_upgrade
-      - IN: manifest_dep
+      - IN: manifest-upgrade
+      - IN: manifest-dep
       - IN: test_replica
       - IN: test_params
       - IN: gke_cluster
@@ -276,8 +276,8 @@ jobs:
     method: upgrade
     workflow: serial
     steps:      
-      - IN: manifest_upgrade
-      - IN: manifest_dep
+      - IN: manifest-upgrade
+      - IN: manifest-dep
       - IN: test_replica
       - IN: test_params
       - IN: triton_cluster
@@ -290,8 +290,8 @@ jobs:
     method: upgrade
     workflow: serial
     steps:      
-      - IN: manifest_upgrade
-      - IN: manifest_dep
+      - IN: manifest-upgrade
+      - IN: manifest-dep
       - IN: test_replica
       - IN: test_params
       - IN: dcl_cluster
@@ -304,8 +304,8 @@ jobs:
     method: upgrade
     workflow: serial
     steps:      
-      - IN: manifest_upgrade
-      - IN: manifest_dep
+      - IN: manifest-upgrade
+      - IN: manifest-dep
       - IN: test_replica
       - IN: test_params
       - IN: ddc_cluster
@@ -318,8 +318,8 @@ jobs:
     method: replace
     workflow: parallel
     steps:      
-      - IN: manifest_replace  
-      - IN: manifest_dep
+      - IN: manifest-replace  
+      - IN: manifest-dep
       - IN: test_replica
       - IN: test_params
       - IN: aws_cluster
@@ -332,8 +332,8 @@ jobs:
     method: replace
     workflow: parallel
     steps:      
-      - IN: manifest_replace
-      - IN: manifest_dep
+      - IN: manifest-replace  
+      - IN: manifest-dep
       - IN: test_replica
       - IN: test_params
       - IN: awsIam_cluster
@@ -346,8 +346,8 @@ jobs:
     method: replace
     workflow: parallel
     steps:      
-      - IN: manifest_replace 
-      - IN: manifest_dep
+      - IN: manifest-replace  
+      - IN: manifest-dep
       - IN: test_replica
       - IN: test_params
       - IN: kubernetes_cluster
@@ -360,8 +360,8 @@ jobs:
     method: replace
     workflow: parallel
     steps:      
-      - IN: manifest_replace
-      - IN: manifest_dep
+      - IN: manifest-replace  
+      - IN: manifest-dep
       - IN: test_replica
       - IN: test_params
       - IN: gke_cluster
@@ -374,8 +374,8 @@ jobs:
     method: replace
     workflow: parallel
     steps:      
-      - IN: manifest_replace
-      - IN: manifest_dep
+      - IN: manifest-replace  
+      - IN: manifest-dep
       - IN: test_replica
       - IN: test_params
       - IN: triton_cluster
@@ -388,8 +388,8 @@ jobs:
     method: replace
     workflow: parallel
     steps:      
-      - IN: manifest_replace
-      - IN: manifest_dep
+      - IN: manifest-replace  
+      - IN: manifest-dep
       - IN: test_replica
       - IN: test_params
       - IN: dcl_cluster
@@ -402,8 +402,8 @@ jobs:
     method: replace
     workflow: parallel
     steps:      
-      - IN: manifest_replace
-      - IN: manifest_dep
+      - IN: manifest-replace  
+      - IN: manifest-dep
       - IN: test_replica
       - IN: test_params
       - IN: ddc_cluster
