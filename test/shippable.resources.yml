@@ -90,8 +90,8 @@ resources:
     type: cluster
     integration: ship-aws
     pointer:
-      sourceName : "testCL"
-      region: "us-west-2"
+      sourceName : "small-cluster"
+      region: "us-east-1"
   
   - name: awsIam_cluster
     type: cluster
@@ -120,7 +120,7 @@ resources:
     integration: ship-gke
     pointer:
       sourceName: "small-cluster" #name of the cluster we are deploying.
-      region: "us-east1-d"
+      region: "us-central1-a"
       
   - name: triton_cluster
     type: cluster
