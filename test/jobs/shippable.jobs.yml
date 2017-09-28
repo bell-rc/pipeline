@@ -129,7 +129,7 @@ jobs:
     workflow: parallel
     steps:      
       - IN: manifest-bluegreen
-      - IN: manifest-dep
+      #- IN: manifest-dep
       - IN: test_replica
       - IN: test_params
       - IN: aws_cluster
@@ -142,7 +142,7 @@ jobs:
     workflow: parallel
     steps:      
       - IN: manifest-bluegreen
-      - IN: manifest-dep
+     # - IN: manifest-dep
       - IN: test_replica
       - IN: test_params
       - IN: awsIam_cluster
@@ -155,7 +155,7 @@ jobs:
     workflow: parallel
     steps:      
       - IN: manifest-bluegreen
-      - IN: manifest-dep
+    #  - IN: manifest-dep
       - IN: test_replica
       - IN: test_params
       - IN: kubernetes_cluster
@@ -168,7 +168,7 @@ jobs:
     workflow: parallel
     steps:      
       - IN: manifest-bluegreen
-      - IN: manifest-dep
+    #  - IN: manifest-dep
       - IN: test_replica
       - IN: test_params
       - IN: gke_cluster
@@ -181,7 +181,7 @@ jobs:
     workflow: parallel
     steps:      
       - IN: manifest-bluegreen
-      - IN: manifest-dep
+     # - IN: manifest-dep
       - IN: test_replica
       - IN: test_params
       - IN: triton_cluster
@@ -194,7 +194,7 @@ jobs:
     workflow: parallel
     steps:      
       - IN: manifest-bluegreen
-      - IN: manifest-dep
+     # - IN: manifest-dep
       - IN: test_replica
       - IN: test_params
       - IN: dcl_cluster
@@ -207,7 +207,7 @@ jobs:
     workflow: parallel
     steps:      
       - IN: manifest-bluegreen
-      - IN: manifest-dep
+     # - IN: manifest-dep
       - IN: test_replica
       - IN: test_params
       - IN: ddc_cluster
