@@ -124,292 +124,292 @@ jobs:
       - NOTIFY: notify-hipchat
       - NOTIFY: notify-irc 
   
-  - name: deploy-awsbluegreen
-    type: deploy
-    workflow: parallel
-    steps:      
-      - IN: manifest-bluegreen
+ # - name: deploy-awsbluegreen
+   # type: deploy
+ #   workflow: parallel
+  #  steps:      
+  #    - IN: manifest-bluegreen
       #- IN: manifest-dep
-      - IN: test_replica
-      - IN: test_params
-      - IN: aws_cluster
-      - IN: dockerOption1
-      - TASK: managed  
-    flags: deploy_aws
+  #    - IN: test_replica
+   #   - IN: test_params
+   #   - IN: aws_cluster
+   #   - IN: dockerOption1
+   #   - TASK: managed  
+  #  flags: deploy_aws
   
-  - name: deploy-awsIambluegreen
-    type: deploy 
-    workflow: parallel
-    steps:      
-      - IN: manifest-bluegreen
+ # - name: deploy-awsIambluegreen
+ #   type: deploy 
+ #   workflow: parallel
+ #   steps:      
+ #     - IN: manifest-bluegreen
      # - IN: manifest-dep
-      - IN: test_replica
-      - IN: test_params
-      - IN: awsIam_cluster
-      - IN: dockerOption1
-      - TASK: managed  
-    flags: deploy_awsIam
+ #     - IN: test_replica
+  #    - IN: test_params
+  #    - IN: awsIam_cluster
+  #    - IN: dockerOption1
+  #    - TASK: managed  
+  #  flags: deploy_awsIam
   
-  - name: deploy-kubernetesbluegreen
-    type: deploy   
-    workflow: parallel
-    steps:      
-      - IN: manifest-bluegreen
+#  - name: deploy-kubernetesbluegreen
+#    type: deploy   
+#    workflow: parallel
+#    steps:      
+ #     - IN: manifest-bluegreen
     #  - IN: manifest-dep
-      - IN: test_replica
-      - IN: test_params
-      - IN: kubernetes_cluster
-      - IN: dockerOption1
-      - TASK: managed  
-    flags: deploy_kubernetes
+ #     - IN: test_replica
+ #     - IN: test_params
+ #     - IN: kubernetes_cluster
+ #     - IN: dockerOption1
+ #     - TASK: managed  
+  #  flags: deploy_kubernetes
     
-  - name: deploy-gkebluegreen
-    type: deploy    
-    workflow: parallel
-    steps:      
-      - IN: manifest-bluegreen
+ # - name: deploy-gkebluegreen
+ #   type: deploy    
+ #   workflow: parallel
+ #   steps:      
+ #     - IN: manifest-bluegreen
     #  - IN: manifest-dep
-      - IN: test_replica
-      - IN: test_params
-      - IN: gke_cluster
-      - IN: dockerOption1
-      - TASK: managed  
-    flags: deploy_gke
+   #   - IN: test_replica
+   #   - IN: test_params
+   #   - IN: gke_cluster
+  #    - IN: dockerOption1
+  #    - TASK: managed  
+  #  flags: deploy_gke
   
-  - name: deploy-tripubbluegreen
-    type: deploy  
-    workflow: parallel
-    steps:      
-      - IN: manifest-bluegreen
+ # - name: deploy-tripubbluegreen
+ #   type: deploy  
+ #   workflow: parallel
+ #   steps:      
+   #   - IN: manifest-bluegreen
      # - IN: manifest-dep
-      - IN: test_replica
-      - IN: test_params
-      - IN: triton_cluster
-      - IN: dockerOption1
-      - TASK: managed  
-    flags: deploy_tripub
+   #   - IN: test_replica
+   #   - IN: test_params
+  #    - IN: triton_cluster
+   #   - IN: dockerOption1
+   #   - TASK: managed  
+  #  flags: deploy_tripub
   
-  - name: deploy-dclbluegreen
-    type: deploy 
-    workflow: parallel
-    steps:      
-      - IN: manifest-bluegreen
+ # - name: deploy-dclbluegreen
+ #   type: deploy 
+#    workflow: parallel
+#    steps:      
+  #    - IN: manifest-bluegreen
      # - IN: manifest-dep
-      - IN: test_replica
-      - IN: test_params
-      - IN: dcl_cluster
-      - IN: dockerOption1
-      - TASK: managed  
-    flags: deploy_dcl
+ #     - IN: test_replica
+ #     - IN: test_params
+ #     - IN: dcl_cluster
+  #    - IN: dockerOption1
+  #    - TASK: managed  
+ #   flags: deploy_dcl
   
-  - name: deploy-ddcbluegreen
-    type: deploy   
-    workflow: parallel
-    steps:      
-      - IN: manifest-bluegreen
+#  - name: deploy-ddcbluegreen
+#    type: deploy   
+ #   workflow: parallel
+ #   steps:      
+ #     - IN: manifest-bluegreen
      # - IN: manifest-dep
-      - IN: test_replica
-      - IN: test_params
-      - IN: ddc_cluster
-      - IN: dockerOption1
-      - TASK: managed  
-    flags: deploy_ddc
+ #     - IN: test_replica
+ #     - IN: test_params
+ #     - IN: ddc_cluster
+ #     - IN: dockerOption1
+ #     - TASK: managed  
+  #  flags: deploy_ddc
+#    
+#  - name: deploy-awsupgrade
+#    type: deploy
+#    method: upgrade
+#    workflow: serial
+#    steps:      
+#      - IN: manifest-upgrade
+#      - IN: manifest-dep
+#      - IN: test_replica
+#      - IN: test_params
+#      - IN: aws_cluster
+#      - IN: dockerOption1
+#      - TASK: managed  
+ #   flags: deploy_aws
+  
+ # - name: deploy-awsIamupgrade
+ #   type: deploy   
+ #   method: upgrade
+  #  workflow: serial
+  #  steps:      
+    #  - IN: manifest-upgrade
+    #  - IN: manifest-dep
+    #  - IN: test_replica
+    #  - IN: test_params
+    #  - IN: awsIam_cluster
+    #  - IN: dockerOption1
+     # - TASK: managed  
+   # flags: deploy_awsIam
+#  
+#  - name: deploy-kubernetesupgrade
+#    type: deploy 
+#    method: upgrade
+#    workflow: serial
+#    steps:      
+#      - IN: manifest-upgrade
+#      - IN: manifest-dep
+#      - IN: test_replica
+ #     - IN: test_params
+ #     - IN: kubernetes_cluster
+#      - IN: dockerOption1
+#      - TASK: managed  
+#    flags: deploy_kubernetes
     
-  - name: deploy-awsupgrade
-    type: deploy
-    method: upgrade
-    workflow: serial
-    steps:      
-      - IN: manifest-upgrade
-      - IN: manifest-dep
-      - IN: test_replica
-      - IN: test_params
-      - IN: aws_cluster
-      - IN: dockerOption1
-      - TASK: managed  
-    flags: deploy_aws
+#  - name: deploy-gkeupgrade
+#    type: deploy   
+ #   method: upgrade
+ #   workflow: serial
+ #   steps:      
+#      - IN: manifest-upgrade
+#      - IN: manifest-dep
+#      - IN: test_replica
+#      - IN: test_params
+#      - IN: gke_cluster
+#      - IN: dockerOption1
+#      - TASK: managed  
+#    flags: deploy_gke
   
-  - name: deploy-awsIamupgrade
-    type: deploy   
-    method: upgrade
-    workflow: serial
-    steps:      
-      - IN: manifest-upgrade
-      - IN: manifest-dep
-      - IN: test_replica
-      - IN: test_params
-      - IN: awsIam_cluster
-      - IN: dockerOption1
-      - TASK: managed  
-    flags: deploy_awsIam
+#  - name: deploy-tripubupgrade
+ #   type: deploy 
+ #   method: upgrade
+ #   workflow: serial
+ #   steps:      
+ #     - IN: manifest-upgrade
+ #     - IN: manifest-dep
+ #     - IN: test_replica
+ #     - IN: test_params
+ #     - IN: triton_cluster
+ #     - IN: dockerOption1
+ #     - TASK: managed  
+ #   flags: deploy_tripub
   
-  - name: deploy-kubernetesupgrade
-    type: deploy 
-    method: upgrade
-    workflow: serial
-    steps:      
-      - IN: manifest-upgrade
-      - IN: manifest-dep
-      - IN: test_replica
-      - IN: test_params
-      - IN: kubernetes_cluster
-      - IN: dockerOption1
-      - TASK: managed  
-    flags: deploy_kubernetes
+ # - name: deploy-dclupgrade
+  #  type: deploy 
+ #   method: upgrade
+  #  workflow: serial
+  #  steps:      
+  #    - IN: manifest-upgrade
+  #    - IN: manifest-dep
+  #    - IN: test_replica
+  #    - IN: test_params
+  #    - IN: dcl_cluster
+  #    - IN: dockerOption1
+   #   - TASK: managed  
+   # flags: deploy_dcl
+  
+  #- name: deploy-ddcupgrade
+  #  type: deploy 
+  #  method: upgrade
+  #  workflow: serial
+  #  steps:      
+  #    - IN: manifest-upgrade
+  #    - IN: manifest-dep
+  #    - IN: test_replica
+  #    - IN: test_params
+  #    - IN: ddc_cluster
+  #    - IN: dockerOption1
+  #    - TASK: managed  
+  #  flags: deploy_ddc
     
-  - name: deploy-gkeupgrade
-    type: deploy   
-    method: upgrade
-    workflow: serial
-    steps:      
-      - IN: manifest-upgrade
-      - IN: manifest-dep
-      - IN: test_replica
-      - IN: test_params
-      - IN: gke_cluster
-      - IN: dockerOption1
-      - TASK: managed  
-    flags: deploy_gke
+  #- name: deploy-awsreplace
+  #  type: deploy
+  #  method: replace
+ #   workflow: parallel
+ #   steps:      
+  #    - IN: manifest-replace  
+  #    - IN: manifest-dep
+  #    - IN: test_replica
+  #    - IN: test_params
+  #    - IN: aws_cluster
+  #    - IN: dockerOption1
+  #    - TASK: managed  
+  #  flags: deploy_aws
   
-  - name: deploy-tripubupgrade
-    type: deploy 
-    method: upgrade
-    workflow: serial
-    steps:      
-      - IN: manifest-upgrade
-      - IN: manifest-dep
-      - IN: test_replica
-      - IN: test_params
-      - IN: triton_cluster
-      - IN: dockerOption1
-      - TASK: managed  
-    flags: deploy_tripub
+#  - name: deploy-awsIamreplace
+ #   type: deploy 
+ #   method: replace
+ #   workflow: parallel
+  #  steps:      
+  #    - IN: manifest-replace  
+  #    - IN: manifest-dep
+  #    - IN: test_replica
+  #    - IN: test_params
+  #    - IN: awsIam_cluster
+  #    - IN: dockerOption1
+  #    - TASK: managed  
+  #  flags: deploy_awsIam
   
-  - name: deploy-dclupgrade
-    type: deploy 
-    method: upgrade
-    workflow: serial
-    steps:      
-      - IN: manifest-upgrade
-      - IN: manifest-dep
-      - IN: test_replica
-      - IN: test_params
-      - IN: dcl_cluster
-      - IN: dockerOption1
-      - TASK: managed  
-    flags: deploy_dcl
-  
-  - name: deploy-ddcupgrade
-    type: deploy 
-    method: upgrade
-    workflow: serial
-    steps:      
-      - IN: manifest-upgrade
-      - IN: manifest-dep
-      - IN: test_replica
-      - IN: test_params
-      - IN: ddc_cluster
-      - IN: dockerOption1
-      - TASK: managed  
-    flags: deploy_ddc
+ # - name: deploy-kubernetesreplace
+ #   type: deploy   
+  #  method: replace
+  #  workflow: parallel
+  #  steps:      
+  #    - IN: manifest-replace  
+  #    - IN: manifest-dep
+    #  - IN: test_replica
+    #  - IN: test_params
+   #   - IN: kubernetes_cluster
+   #   - IN: dockerOption1
+   #   - TASK: managed  
+   # flags: deploy_kubernetes
     
-  - name: deploy-awsreplace
-    type: deploy
-    method: replace
-    workflow: parallel
-    steps:      
-      - IN: manifest-replace  
-      - IN: manifest-dep
-      - IN: test_replica
-      - IN: test_params
-      - IN: aws_cluster
-      - IN: dockerOption1
-      - TASK: managed  
-    flags: deploy_aws
+  #- name: deploy-gkereplace
+  #  type: deploy    
+  #  method: replace
+  #  workflow: parallel
+  #  steps:      
+  #    - IN: manifest-replace  
+  ##    - IN: manifest-dep
+  #    - IN: test_replica
+  #    - IN: test_params
+  #    - IN: gke_cluster
+  #    - IN: dockerOption1
+  #    - TASK: managed  
+  #  flags: deploy_gke
   
-  - name: deploy-awsIamreplace
-    type: deploy 
-    method: replace
-    workflow: parallel
-    steps:      
-      - IN: manifest-replace  
-      - IN: manifest-dep
-      - IN: test_replica
-      - IN: test_params
-      - IN: awsIam_cluster
-      - IN: dockerOption1
-      - TASK: managed  
-    flags: deploy_awsIam
+#  - name: deploy-tripubreplace
+ #   type: deploy  
+ #   method: replace
+  #  workflow: parallel
+   # steps:      
+  #    - IN: manifest-replace  
+  #    - IN: manifest-dep
+   #   - IN: test_replica
+  #    - IN: test_params
+  #    - IN: triton_cluster
+  #    - IN: dockerOption1
+ #     - TASK: managed  
+ #   flags: deploy_tripub
   
-  - name: deploy-kubernetesreplace
-    type: deploy   
-    method: replace
-    workflow: parallel
-    steps:      
-      - IN: manifest-replace  
-      - IN: manifest-dep
-      - IN: test_replica
-      - IN: test_params
-      - IN: kubernetes_cluster
-      - IN: dockerOption1
-      - TASK: managed  
-    flags: deploy_kubernetes
-    
-  - name: deploy-gkereplace
-    type: deploy    
-    method: replace
-    workflow: parallel
-    steps:      
-      - IN: manifest-replace  
-      - IN: manifest-dep
-      - IN: test_replica
-      - IN: test_params
-      - IN: gke_cluster
-      - IN: dockerOption1
-      - TASK: managed  
-    flags: deploy_gke
+#  - name: deploy-dclreplace
+ #   type: deploy 
+  #  method: replace
+  #  workflow: parallel
+  #  steps:      
+  #    - IN: manifest-replace  
+  #    - IN: manifest-dep
+  #    - IN: test_replica
+  #    - IN: test_params
+  #    - IN: dcl_cluster
+  #    - IN: dockerOption1
+  #    - TASK: managed  
+ #   flags: deploy_dcl
   
-  - name: deploy-tripubreplace
-    type: deploy  
-    method: replace
-    workflow: parallel
-    steps:      
-      - IN: manifest-replace  
-      - IN: manifest-dep
-      - IN: test_replica
-      - IN: test_params
-      - IN: triton_cluster
-      - IN: dockerOption1
-      - TASK: managed  
-    flags: deploy_tripub
-  
-  - name: deploy-dclreplace
-    type: deploy 
-    method: replace
-    workflow: parallel
-    steps:      
-      - IN: manifest-replace  
-      - IN: manifest-dep
-      - IN: test_replica
-      - IN: test_params
-      - IN: dcl_cluster
-      - IN: dockerOption1
-      - TASK: managed  
-    flags: deploy_dcl
-  
-  - name: deploy-ddcreplace
-    type: deploy   
-    method: replace
-    workflow: parallel
-    steps:      
-      - IN: manifest-replace  
-      - IN: manifest-dep
-      - IN: test_replica
-      - IN: test_params
-      - IN: ddc_cluster
-      - IN: dockerOption1
-      - TASK: managed  
-    flags: deploy_ddc
+ # - name: deploy-ddcreplace
+ #   type: deploy   
+ #   method: replace
+ #   workflow: parallel
+ #   steps:      
+  #    - IN: manifest-replace  
+  #    - IN: manifest-dep
+  #    - IN: test_replica
+  #    - IN: test_params
+  #    - IN: ddc_cluster
+  ##    - IN: dockerOption1
+  #    - TASK: managed  
+  #  flags: deploy_ddc
     
 # Provision instances on AWS with Terraform
   - name: provision_aws_terraform_packer
