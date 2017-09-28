@@ -188,7 +188,7 @@ resources:
   - name: test_replica
     type: replicas
     version:
-      count: 2
+      count: 1
       
   - name: test_paramsCLI
     type: params
