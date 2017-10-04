@@ -19,6 +19,7 @@ jobs:
 
   - name: runsh_pre_jobscript
     type: runSh
+    allowPublicAccess: true
     on_start:
       - NOTIFY: notify-slack
       - NOTIFY: notify-email
@@ -34,7 +35,7 @@ jobs:
       - TASK:
         - script: ./IN/pipeline_scriptRepobb/gitRepo/runsh/pre_runshjob.sh    
         - script: ./IN/same_syncRepos/gitRepo/script.sh  
-        - script: printenv
+        #- script: printenv
     flags: runsh_pre_jobscript
     on_success:      
       - script: echo 'test in on_success'
@@ -43,7 +44,7 @@ jobs:
     # # - script: ./IN/sample-script-3/gitRepo/echo.sh
     on_failure:
       - script: echo 'testing1 failure'      
-      - script: pwd
+     # - script: pwd
       - script: echo 'OOPS on_failure :('
     always:
       - script: echo "This works on_always"
