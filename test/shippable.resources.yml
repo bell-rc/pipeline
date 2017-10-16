@@ -251,7 +251,10 @@ resources:
   - name: int-old_gcr_cli
     type: cliConfig
     integration: "ship-gcr"
-
+  
+  - name: int-old_kube_cli
+    type: cliConfig
+    integration: "ship-kubernetes"
     
   - name: int-old_gke_cli
     type: cliConfig
@@ -284,6 +287,10 @@ resources:
   - name: int-new_gcloud_cli
     type: cliConfig
     integration: "gcloud-new"
+  
+  - name: int-new_kube_cli
+    type: cliConfig
+    integration: "kube-new"
     
   - name: int-key-values
     type: integration
