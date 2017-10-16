@@ -247,7 +247,10 @@ resources:
     type: cliConfig
     integration: "ship-docker"
 
-  
+  - name: int-old_dtr_cli
+    type: cliConfig
+    integration: "ship-dtr"
+    
   - name: int-old_gcr_cli
     type: cliConfig
     integration: "ship-gcr"
