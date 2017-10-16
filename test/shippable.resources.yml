@@ -278,6 +278,10 @@ resources:
       sourceName: "small-cluster"
       region: "us-east1-d"
       
+  - name: int-new_gcloud_cli
+    type: cliConfig
+    integration: "gcloud-new"
+    
   - name: int-key-values
     type: integration
     integration: "ship-keyvalue"
