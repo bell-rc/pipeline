@@ -33,17 +33,20 @@ jobs:
     type: runSh
    # allowPublicAccess: true
     steps:      
-      - IN: int-plscript_RepoTagsnReleases  
+      - IN: int-plscript_Repo 
       - IN: int-old_dh_cli
+      - IN: int-old_dtr_cli
+      - IN: int-old_kube_cli
       - IN: int-old_aws_cli
       - IN: int-old_gke_cli
       - IN: int-old_ecr_cli
       - IN: int-old_gcr_cli      
       - IN: int-old_quay_cli
+      - IN: int-new_jfrog_cli
       - IN: int-t3runcli
       - IN: int-key-values    
       - TASK:        
-        - script: ./IN/int-plscript_RepoTagsnReleases/gitRepo/runcli/accInt.sh 
+        - script: ./IN/int-plscript_Repo/gitRepo/runcli/accInt.sh 
        # - script: printenv
         - script: echo $key1
         - script: echo $key2
