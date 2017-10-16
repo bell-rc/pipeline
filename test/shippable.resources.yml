@@ -180,7 +180,7 @@ resources:
         #secure: STW8SDUmEbHZXkMJSnq9DrqHj5FL9MlMi1H94DvyvLP+0ZwAixVlnFy3v8DcsEI2o6pEM6s9gCPFPX6v4kNxYAuEWtZSLwAxYYfdbDrvnjOTfJhVfFEVOgjUET1ratHbFIdKLDkRulPJGd8VUxecCPyLpyCqDRlJiBC3mbyVHF6ZPTSKwnkNeAzu84X+1lxwD3OGUgtyLCsJJJiXGDPonUgO1P8mxx44gn1jvkV6H2fRftaHAIV9p9LsSz3Si9Z51LaGgLg6YjXFzCa4bbkU3f//ELcPqkVqz6kkroqKzy4l1WxBUppUaCgl4nTFKyCDar/YB8AR4ugaU6Pcz/eRGQ== #DEV=alpha
 
   
-  - name: in-test_replica
+  - name: int-test_replica
     type: replicas
     version:
       count: 1
