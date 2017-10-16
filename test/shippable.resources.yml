@@ -1,6 +1,6 @@
 resources:
 
-  - name: pipeline_scriptRepobb
+  - name: int-pipeline_scriptRepobb
     type: gitRepo
     integration: bitbucket
     pointer:
@@ -10,10 +10,9 @@ resources:
           - master
           - pr
       buildOnPullRequest: true
-    flags:
-      - pipeline_scriptRepobb
+
       
-  - name: plscript_RepoTagsnReleases
+  - name: int-plscript_RepoTagsnReleases
     type: gitRepo
     integration: bitbucket
     pointer:
@@ -22,39 +21,35 @@ resources:
         only:
           - v1.*
       buildOnTagPush: true
-    flags:
-      - plscript_RepoTagsnReleases
+
       
-  - name: same_syncRepos
+  - name: int-same_syncRepos
     type: gitRepo
     integration: bitbucket
     pointer:
       sourceName: "shiptest-rc-ow/pipeline"
       branch: master  
-    flags:
-      - same_syncRepos
+
       
-  - name: sample_img
+  - name: int-sample_img
     type: image
     integration: ship-docker
     pointer:
       sourceName: "shippabledocker/pipelinev2"
     seed:
       versionName: "deploy.2"
-    flags:
-      - sample_img
+
   
-  - name: deploy_img
+  - name: int-deploy_img
     type: image
     integration: ship-docker
     pointer:
       sourceName: "nginx"
     seed:
       versionName: "latest"
-    flags:
-      - deploy_img
+ 
   
-  - name: deploy_img1
+  - name: int-deploy_img1
     type: image
     integration: ship-docker
     pointer:
@@ -62,7 +57,7 @@ resources:
     seed:
       versionName: "deploy.1"
   
-  - name: deploy_img2
+  - name: int-deploy_img2
     type: image
     integration: ship-docker
     pointer:
@@ -70,7 +65,7 @@ resources:
     seed:
       versionName: "deploy.2"
   
-  - name: deploy_img3
+  - name: int-deploy_img3
     type: image
     integration: ship-docker
     pointer:
@@ -78,7 +73,7 @@ resources:
     seed:
       versionName: "deploy.3"
       
-  - name: ddc_cluster
+  - name: int-ddc_cluster
     type: cluster
     integration: ship-ddc
     pointer:
@@ -86,28 +81,28 @@ resources:
     flags:
       - ddc_cluster
   
-  - name: aws_cluster
+  - name: int-aws_cluster
     type: cluster
     integration: ship-aws
     pointer:
       sourceName : "small-cluster"
       region: "us-east-1"
   
-  - name: awsIam_cluster
+  - name: int-awsIam_cluster
     type: cluster
     integration: ship-aws
     pointer:
       sourceName : "testCL"
       region: "us-west-2"
       
- # - name: dep-ecsClusterLoadBalancer
+ # - name: int-dep-ecsClusterLoadBalancer
  #   type: cluster
  #   integration: ship-aws
   #  pointer:
   #    sourceName : "loadBalanceTest"
    #   region: "us-east-1"
   
-  - name: kubernetes_cluster
+  - name: int-kubernetes_cluster
     type: cluster
     integration: "ship-kubernetes"
   
@@ -115,34 +110,34 @@ resources:
  #   type: cluster
  #   integration: "kubernetes_new17aug2017"
     
-  - name: gke_cluster
+  - name: int-gke_cluster
     type: cluster
     integration: ship-gke
     pointer:
       sourceName: "small-cluster" #name of the cluster we are deploying.
       region: "us-central1-a"
       
-  - name: triton_cluster
+  - name: int-triton_cluster
     type: cluster
     integration: ship-tripub
     pointer:
       sourceName: "default" # we can give anything it deploy instances based on region not by cluster name
       region: "us-east-2"
   
-  - name: dcl_cluster
+  - name: int-dcl_cluster
     type: cluster
     integration: ship-dcl
     pointer:
       sourceName : "cluster-dcl"
       
-  - name: dockerOption1
+  - name: int-dockerOption1
     type: dockerOptions
     version:
       memory: 128
     flags:
       - ddc_dopts
       
-  - name: test_out_img
+  - name: int-test_out_img
     type: image
     integration: ship-docker
     pointer:
@@ -152,7 +147,7 @@ resources:
     flags:
       - test_out_img
   
-  - name: test_out_img2
+  - name: int-test_out_img2
     type: image
     integration: ship-docker
     pointer:
@@ -162,43 +157,39 @@ resources:
     flags:
       - test_out_img2
       
-  - name: ship_dh
+  - name: int-ship_dh
     type: integration
     integration: "ship-docker"  
-    flags:
-      - ship_dh
-    
-  - name: ship_aws
+      
+  - name: int-ship_aws
     type: integration
     integration: "ship-aws"
     flags:
       - ship_dh
       - ship_dh2
 
-  - name: test_params
+  - name: int-test_params
     type: params
     version:
       params:
         TEST: rc
         env: e1
         #secure: STW8SDUmEbHZXkMJSnq9DrqHj5FL9MlMi1H94DvyvLP+0ZwAixVlnFy3v8DcsEI2o6pEM6s9gCPFPX6v4kNxYAuEWtZSLwAxYYfdbDrvnjOTfJhVfFEVOgjUET1ratHbFIdKLDkRulPJGd8VUxecCPyLpyCqDRlJiBC3mbyVHF6ZPTSKwnkNeAzu84X+1lxwD3OGUgtyLCsJJJiXGDPonUgO1P8mxx44gn1jvkV6H2fRftaHAIV9p9LsSz3Si9Z51LaGgLg6YjXFzCa4bbkU3f//ELcPqkVqz6kkroqKzy4l1WxBUppUaCgl4nTFKyCDar/YB8AR4ugaU6Pcz/eRGQ== #DEV=alpha
-    flags:
-      - test_params
+
   
-  - name: test_replica
+  - name: in-test_replica
     type: replicas
     version:
       count: 1
       
-  - name: test_paramsCLI
+  - name: int-test_paramsCLI
     type: params
     version:
       params:
         TESTcli1: rc1
-    flags:
-      - test_paramsCLI
+
       
-  - name: notify-slack
+  - name: int-notify-slack
     type: notification
     integration: "notify-slack"
     pointer:
@@ -206,30 +197,27 @@ resources:
         - "#rc-public" 
         - "#rc-private"
         - "@shiptest-rc-ow"
-    flags:
-      - notify-slack
 
-  - name: notify-email
+
+  - name: int-notify-email
     type: notification
     pointer:
       method: email
       recipients: 
         - shiptest.rc.ow@gmail.com
         - shiptest.rc.me@gmail.com
-    flags:
-      - notify-email
+
   
-  - name: notify-irc
+  - name: int-notify-irc
     type: notification
     pointer:
       method: irc
       recipients: 
         - "webchat.irchighway.net#test-rc"
         - "webchat.irchighway.net#test"
-    flags:
-      - notify-irc
+
   
-  - name: notify-hipchat
+  - name: int-notify-hipchat
     type: notification
     integration: "notify-hipchat"
     pointer:
@@ -237,55 +225,61 @@ resources:
         - "#rc-public" 
         - "#rc-private"
         - "@shiptestrcow"
-    flags:
-      - notify-hipchat
+
         
-  - name: ship_ecr_cli
+  - name: int-old_ecr_cli
     type: cliConfig
     integration: "ship-ecr"
     pointer:
       region: "us-east-1"
-    flags:
-      - ship_ecr_cli
-      
-  - name: ship_aws_cli
+
+  - name: int-old_aws_cli
     type: cliConfig
     integration: "ship-aws"
     pointer:
       region: "us-east-1"
-    flags:
-      - ship_aws_cli
+
   
-  - name: ship_dh_cli
+  - name: int-old_dh_cli
     type: cliConfig
     integration: "ship-docker"
-    flags:
-      - ship_dh_cli
+
   
-  - name: ship_gcr_cli
+  - name: int-old_gcr_cli
     type: cliConfig
     integration: "ship-gcr"
-    flags:
-      - ship_gcr_cli
+
     
-  - name: ship_gke_cli
+  - name: int-old_gke_cli
     type: cliConfig
     integration: "ship-gke"
     pointer:
       sourceName: "small-cluster"
       region: "us-east1-d"
-    flags:
-      - ship_gke_cli
-    
-  - name: ship_quay_cli
+
+  - name: int-old_quay_cli
     type: cliConfig
     integration: "ship-quay"
-    flags:
-      - ship_quay_cli
-    
-  - name: key-values
+
+  - name: int-new_aws_cli
+    type: cliConfig
+    integration: "aws-new"
+    pointer:
+      region: "us-east-1"
+  
+  - name: int-new_jfrog_cli
+    type: cliConfig
+    integration: "jfrog-new"
+  
+  - name: int-new_gke_cli
+    type: cliConfig
+    integration: "gke-new"
+    pointer:
+      sourceName: "small-cluster"
+      region: "us-east1-d"
+      
+  - name: int-key-values
     type: integration
     integration: "ship-keyvalue"
-    flags:
-      - key-values
+
       
