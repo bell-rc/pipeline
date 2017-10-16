@@ -11,7 +11,16 @@ resources:
           - pr
       buildOnPullRequest: true
 
-      
+  
+   - name: int-plscript_Repo
+    type: gitRepo
+    integration: bitbucket
+    pointer:
+      sourceName: "shiptest-rc-ow/pipeline_scripts"
+      branches:
+        only:
+          - master
+          
   - name: int-plscript_RepoTagsnReleases
     type: gitRepo
     integration: bitbucket
@@ -298,5 +307,4 @@ resources:
   - name: int-key-values
     type: integration
     integration: "ship-keyvalue"
-
-      
+    
