@@ -17,10 +17,13 @@ resources:
     integration: bitbucket
     pointer:
       sourceName: "shiptest-rc-ow/pipeline_scripts"
-      tags: 
+      branches:
         only:
-          - v1.*
-      buildOnTagPush: true
+          - integrations-cli
+     # tags: 
+     #   only:
+       #   - v1.*
+     # buildOnTagPush: true
 
       
   - name: int-same_syncRepos
