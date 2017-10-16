@@ -97,42 +97,40 @@ jobs:
       - IN: int-dockerOption1
       - TASK: managed  
   
-  - name: deploy-awsIambluegreen
+  - name: int-deploy-awsIambluegreen
     type: deploy 
     workflow: parallel
     steps:      
-      - IN: manifest-bluegreen
+      - IN: int-manifest-bluegreen
      # - IN: manifest-dep
-      - IN: test_replica
-      - IN: test_params
-      - IN: awsIam_cluster
-      - IN: dockerOption1
+      - IN: int-test_replica
+      - IN: int-test_params
+      - IN: int-awsIam_cluster
+      - IN: int-dockerOption1
       - TASK: managed  
-    flags: deploy_awsIam
   
-  - name: deploy-kubernetesbluegreen
+  - name: int-deploy-kubernetesbluegreen
     type: deploy   
     workflow: parallel
     steps:      
-      - IN: manifest-bluegreen
+      - IN: int-manifest-bluegreen
     #  - IN: manifest-dep
-      - IN: test_replica
-      - IN: test_params
-      - IN: kubernetes_cluster
-      - IN: dockerOption1
+      - IN: int-test_replica
+      - IN: int-test_params
+      - IN: int-kubernetes_cluster
+      - IN: int-dockerOption1
       - TASK: managed  
-    flags: deploy_kubernetes
+
     
-  - name: deploy-gkebluegreen
+  - name: int-deploy-gkebluegreen
     type: deploy    
     workflow: parallel
     steps:      
-      - IN: manifest-bluegreen
+      - IN: int-manifest-bluegreen
     #  - IN: manifest-dep
-      - IN: test_replica
-      - IN: test_params
-      - IN: gke_cluster
-      - IN: dockerOption1
-      - TASK: managed  
-    flags: deploy_gke
+      - IN: int-test_replica
+      - IN: int-test_params
+      - IN: int-gke_cluster
+      - IN: int-dockerOption1
+      - TASK: managed 
       
