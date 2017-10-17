@@ -47,6 +47,13 @@ jobs:
     #  - IN: int-key-values    
       - TASK:        
         - script: ./IN/int-plscript_Repo/gitRepo/runcli/accInt.sh 
+        - script: pushd IN/int-plscript_Repo/gitRepo
+        - script: packer --version
+        - script: packer validate packer-example.json
+        - script: packer build -var "aws_access_key=$aws_access_key" -var "aws_secret_key=$aws_secret_key" packer-example.json
+        - script: popd
+        - script: eb init -r us-east-1 nginx
+        - script: eb status
   
   - name: int-new-runShcli
     type: runSh
