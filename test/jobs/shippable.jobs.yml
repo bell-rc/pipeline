@@ -35,14 +35,14 @@ jobs:
     steps:      
       - IN: int-plscript_Repo 
       - IN: int-old_dh_cli
-     # - IN: int-old_dtr_cli
+      - IN: int-old_dtr_cli
      # - IN: int-old_kube_cli
       - IN: int-old_aws_cli
-     # - IN: int-old_gke_cli
+      - IN: int-old_gke_cli
       - IN: int-old_ecr_cli
       - IN: int-old_gcr_cli      
       - IN: int-old_quay_cli
-     # - IN: int-new_jfrog_cli
+      - IN: int-new_jfrog_cli
       - IN: int-t3runcli
     #  - IN: int-key-values    
       - TASK:        
