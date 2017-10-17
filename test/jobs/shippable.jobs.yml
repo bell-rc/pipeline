@@ -230,6 +230,78 @@ jobs:
       - TASK: managed  
     flags: deploy_aws
   
+  - name: deploy-newawsupgradetoplevel
+    type: deploy
+    method: upgrade
+    workflow: serial
+    steps:      
+      - IN: manifest-upgrade
+      - IN: test_replica
+      - IN: test_params
+      - IN: aws_cluster-new
+      - IN: dockerOption1
+      - TASK: managed  
+    flags: new-aws
+  
+  - name: deploy-newawsupgradebottom
+    type: deploy
+    steps:      
+      - IN: manifest-upgrade
+      - IN: test_replica
+      - IN: test_params
+      - IN: aws_cluster-new
+      - IN: dockerOption1
+      - TASK: managed 
+        deployMethod: upgrade
+    flags: new-aws
+    
+  - name: deploy-newawsdefault
+    type: deploy
+    steps:      
+      - IN: manifest-upgrade
+      - IN: test_replica
+      - IN: test_params
+      - IN: aws_cluster-new
+      - IN: dockerOption1
+      - TASK: managed  
+    flags: new-aws
+  
+  - name: deploy-oldawsupgradetoplevel
+    type: deploy
+    method: upgrade
+    workflow: serial
+    steps:      
+      - IN: manifest-upgrade
+      - IN: test_replica
+      - IN: test_params
+      - IN: aws_cluster
+      - IN: dockerOption1
+      - TASK: managed  
+    flags: old-aws
+  
+  - name: deploy-oldawsupgradebottom
+    type: deploy
+    steps:      
+      - IN: manifest-upgrade
+      - IN: test_replica
+      - IN: test_params
+      - IN: aws_cluster
+      - IN: dockerOption1
+      - TASK: managed 
+        deployMethod: upgrade
+    flags: old-aws
+    
+  - name: deploy-oldawsdefault
+    type: deploy
+    steps:      
+      - IN: manifest-upgrade
+      - IN: test_replica
+      - IN: test_params
+      - IN: aws_cluster
+      - IN: dockerOption1
+      - TASK: managed  
+    flags: old-aws
+    
   - name: deploy-awsIamupgrade
     type: deploy   
     method: upgrade
@@ -513,4 +585,4 @@ jobs:
      #     cp terraform.tfstate /build/state
     flags:
       - provision-aws-terraform
-      
+     
