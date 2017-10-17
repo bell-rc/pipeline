@@ -54,6 +54,9 @@ jobs:
         - script: popd
         - script: eb init -r us-east-1 nginx
         - script: eb status
+        - script: kubectl
+        - script: kubectl version
+        - script: kubectl get namespaces
   
   - name: int-new-runShcli
     type: runSh
