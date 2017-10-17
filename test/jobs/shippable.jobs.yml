@@ -47,9 +47,6 @@ jobs:
       - IN: int-key-values    
       - TASK:        
         - script: ./IN/int-plscript_Repo/gitRepo/runcli/accInt.sh 
-       # - script: printenv
-        - script: echo $key1
-        - script: echo $key2
   
   - name: int-new-runShcli
     type: runSh
