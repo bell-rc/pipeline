@@ -17,9 +17,7 @@ resources:
     integration: bitbucket
     pointer:
       sourceName: "shiptest-rc-ow/pipeline_scripts"
-      branches:
-        only:
-          - master
+      branch: master
           
   - name: int-plscript_RepoTagsnReleases
     type: gitRepo
