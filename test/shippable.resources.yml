@@ -12,7 +12,7 @@ resources:
       buildOnPullRequest: true
 
   
-   - name: int-plscript_Repo
+  - name: int-plscript_Repo
     type: gitRepo
     integration: bitbucket
     pointer:
