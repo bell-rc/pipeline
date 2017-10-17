@@ -93,6 +93,13 @@ resources:
       sourceName : "small-cluster"
       region: "us-east-1"
   
+  - name: aws_cluster-new
+    type: cluster
+    integration: aws-new
+    pointer:
+      sourceName : "small-cluster"
+      region: "us-east-1"
+      
   - name: awsIam_cluster
     type: cluster
     integration: ship-aws
