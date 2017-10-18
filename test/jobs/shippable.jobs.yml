@@ -301,6 +301,78 @@ jobs:
       - IN: dockerOption1
       - TASK: managed  
     flags: old-aws
+  
+   - name: deploy-newkubeupgradetoplevel
+    type: deploy
+    method: upgrade
+    workflow: serial
+    steps:      
+      - IN: manifest-upgrade
+      - IN: test_replica
+      - IN: test_params
+      - IN: kubernetes_cluster
+      - IN: dockerOption1
+      - TASK: managed  
+    flags: new-kube
+  
+  - name: deploy-newkubeupgradebottom
+    type: deploy
+    steps:      
+      - IN: manifest-upgrade
+      - IN: test_replica
+      - IN: test_params
+      - IN: kubernetes_cluster
+      - IN: dockerOption1
+      - TASK: managed 
+        deployMethod: upgrade
+    flags: new-kube
+    
+  - name: deploy-newkubedefault
+    type: deploy
+    steps:      
+      - IN: manifest-upgrade
+      - IN: test_replica
+      - IN: test_params
+      - IN: kubernetes_cluster
+      - IN: dockerOption1
+      - TASK: managed  
+    flags: new-kube
+  
+  - name: deploy-newgkeupgradetoplevel
+    type: deploy
+    method: upgrade
+    workflow: serial
+    steps:      
+      - IN: manifest-upgrade
+      - IN: test_replica
+      - IN: test_params
+      - IN: gke_cluster
+      - IN: dockerOption1
+      - TASK: managed  
+    flags: new-kube
+  
+  - name: deploy-newgkeupgradebottom
+    type: deploy
+    steps:      
+      - IN: manifest-upgrade
+      - IN: test_replica
+      - IN: test_params
+      - IN: gke_cluster
+      - IN: dockerOption1
+      - TASK: managed 
+        deployMethod: upgrade
+    flags: new-kube
+    
+  - name: deploy-newgkedefault
+    type: deploy
+    steps:      
+      - IN: manifest-upgrade
+      - IN: test_replica
+      - IN: test_params
+      - IN: gke_cluster
+      - IN: dockerOption1
+      - TASK: managed  
+    flags: new-gke
     
   - name: deploy-awsIamupgrade
     type: deploy   
