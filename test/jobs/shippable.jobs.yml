@@ -349,7 +349,7 @@ jobs:
       - IN: gke_cluster
       - IN: dockerOption1
       - TASK: managed  
-    flags: new-kube
+    flags: new-gke
   
   - name: deploy-newgkeupgradebottom
     type: deploy
@@ -361,7 +361,7 @@ jobs:
       - IN: dockerOption1
       - TASK: managed 
         deployMethod: upgrade
-    flags: new-kube
+    flags: new-gke
     
   - name: deploy-newgkedefault
     type: deploy
