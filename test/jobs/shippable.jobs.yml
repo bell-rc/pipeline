@@ -579,10 +579,10 @@ jobs:
     on_failure:
       - script: echo "FAILURE"
     ############# save Terraform statefile for use in subsequent jobs
-    #always:
-    #  - script: |
-     #     cd $PIPELINE_SCRIPTREPOBB_STATE_STATE
-     #     cp terraform.tfstate /build/state
+    always:
+      - script: |
+          cd $PIPELINE_SCRIPTREPOBB_STATE_STATE
+          cp terraform.tfstate /build/state
     flags:
       - provision-aws-terraform
      
