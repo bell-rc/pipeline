@@ -302,7 +302,7 @@ jobs:
       - TASK: managed  
     flags: old-aws
   
-   - name: deploy-newkubeupgradetoplevel
+  - name: deploy-newkubeupgradetoplevel
     type: deploy
     method: upgrade
     workflow: serial
