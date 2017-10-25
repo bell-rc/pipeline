@@ -558,7 +558,7 @@ jobs:
     
 # Provision instances on AWS with Terraform
   - name: provision_aws_terraform_packer
-    type: runSh
+    type: runCLI
     allowPublicAccess: false #never make this job allowPublicAccess: true since we have sensitive data
     steps:
       - IN: ship_aws_cli
@@ -660,4 +660,107 @@ jobs:
 #          cp terraform.tfstate /build/state
     flags:
       - provision-aws-terraform
-     
+
+  - name: provision_aws_terraform_packer_runsh
+    type: runSh
+    allowPublicAccess: false #never make this job allowPublicAccess: true since we have sensitive data
+    steps:
+      - IN: ship_aws_cli
+      - IN: same_syncRepos
+        switch: off
+      - IN: ship_dh_cli
+      - IN: test_paramsCLI
+      - IN: test_params
+      - IN: runshscript
+      - IN: pipeline_scriptRepobb
+      - OUT: test_out_img2
+      - TASK:
+        - script: export testEnv=EnvFromJob
+        - script: echo "testEnv=$testEnv"
+        - script: echo "--->shipctl copy_file_from_prev_state <filename> <topath>. Copies the file to the path supplied from the state folder of the previos run of the Job that is currently running."
+        - script: shipctl copy_file_from_prev_state "test/jobs/config.json" "IN/same_syncRepos/gitRepo/test/jobs/config1.json"
+        - script: cat "IN/same_syncRepos/gitRepo/test/jobs/config1.json"
+        - script: echo "--->shipctl copy_file_to_state <filename>. Copies the file to the state folder of the Job that is currently running. This will be available to the next run of the Job or any future Jobs that use this as an IN"
+        - script: shipctl copy_file_to_state "IN/same_syncRepos/gitRepo/test/jobs/testcopy.json"
+        - script: echo "--->shipctl copy_resource_file_from_state <resource name> <filename> <topath>. Copies the file from the Resource State that was supplied as IN into the path supplied"
+        - script: shipctl copy_resource_file_from_state "pipeline_scriptRepobb" "package.json" "IN/pipeline_scriptRepobb/gitRepo/copy.json"
+        - script: echo "--->shipctl decrypt <source filename> <key filename>. Uses the key-file to decryt the contents of source-file. This is typically used to decrypt stuff encrypted using Shippable keys on the fly, similar to how our encryption works. It avoids you having to build encrypt-decrypt system"
+        - script: shipctl decrypt "IN/same_syncRepos/gitRepo/key/accounts"
+        - script: cat "IN/same_syncRepos/gitRepo/key/accounts.decrypted" #accounts=decryptvalue secured value is in keys/accounts file
+        - script: echo "--->shipctl get_json_value <filename> <field name>. Gets the json property value from the specified file. Fieldname supports . notation and [n] for arrays"
+        - script: shipctl get_json_value "IN/same_syncRepos/gitRepo/test/jobs/properties.json" "properties[0].property1"
+        - script: echo "get_integration_resource_field"
+        - script: shipctl get_integration_resource_field "ship_dh_cli" "username"
+        - script: echo "--->get_resource_id"
+        - script: shipctl get_resource_id "ship_dh_cli"
+        - script: echo "--->get_resource_meta"
+        - script: shipctl get_resource_meta "test_paramsCLI"
+        - script: echo "--->get_resource_operation"
+        - script: shipctl get_resource_operation "ship_dh_cli"
+        - script: echo "--->get_resource_state"
+        - script: shipctl get_resource_state "test_paramsCLI"
+        - script: echo "--->get_resource_type"
+        - script: shipctl get_resource_type "ship_dh_cli"
+        - script: echo "--->get_resource_version_id"
+        - script: shipctl get_resource_version_id "runshscript"
+        - script: echo "--->get_resource_version_name"
+        - script: shipctl get_resource_version_name "runshscript"
+        - script: echo "--->resource_version_number"
+        - script: shipctl get_resource_version_number "runshscript"
+        - script: echo "--->get_resource_version_key"
+        - script: shipctl get_resource_version_key "test_params" "TEST"
+        - script: echo "--->post_resource_state"        
+        - script: shipctl post_resource_state "test_paramsCLI" "TESTcli1" "rc2"
+        - script: cat "/build/IN/test_paramsCLI/params" #echo "TESTcli2=$TESTcli2"
+        - script: echo "--->put_resource_state"
+        - script: shipctl put_resource_state "test_paramsCLI" "TESTcli1" "rc3"
+        - script: cat "/build/IN/test_paramsCLI/params" #echo "TESTcli3=$TESTcli3"
+        - script: echo "--->get_params_resource"
+        - script: shipctl get_params_resource "test_paramsCLI" "TESTcli1"
+        - script: echo "TESTcli1=$TESTcli1"
+        - script: echo "--->get_integration_resource"
+        - script: shipctl get_integration_resource "ship_dh_cli"
+        - script: echo "--->shipctl refresh_file_to_out_path <filename> <resource name> Copies the file to the Resource State that was supplied as OUT"
+        - script: shipctl refresh_file_to_out_path "test/jobs/sample.json" "test_out_img2"
+        - script: echo "--->shipctl refresh_file_to_state <filename>. This will look in the present working directory for the <filename> and if present, copy that to current Job state. If it doesnt find the file, it will look in the state of the previos run of the Job and copy that. If it doesnt find it there, it just returns 0 exit code"
+        - script: shipctl refresh_file_to_state "/test/jobs/config.json"
+        - script: echo "shipctl replace <filename1> <filename2> <filenameN>. If you have a config file/s with a bunch of variables, you can use this utility to replace them all in one shot based on your current shell env. Your files need to have the placeholders in this format; $ENVIRONMENT_VARIABLE_NAME or ${ENVIRONMENT_VARIABLE_NAME}. The second option is the recommended one"
+        - script: shipctl replace "IN/same_syncRepos/gitRepo/test/jobs/config.json" "IN/same_syncRepos/gitRepo/test/jobs/sample.json"
+        - script: echo "--->retry command"
+        - script: shipctl retry "echo 'hello'"
+        - script: echo "--->sanitize_shippable_string"
+        - script: shipctl sanitize_shippable_string "sanitize!@#$%^&*()-=+_[]{};,.<>"
+        - script: echo "--->shipctl to_uppercase"
+        - script: shipctl to_uppercase "uppercase!@#"
+        ######### uncomment below line to test if PACKER is able to build an AMI on AWS
+#        - script: packer build -var "aws_access_key="$SHIP_AWS_CLI_INTEGRATION_AWS_ACCESS_KEY_ID"" -var "aws_secret_key="$SHIP_AWS_CLI_INTEGRATION_AWS_SECRET_ACCESS_KEY"" IN/pipeline_scriptRepobb/gitRepo/packer.json
+        ######### Restore previous Terraform statefile
+#        - script: |
+#            cd /build/previousState
+#            if [[ -f terraform.tfstate ]]; then 
+#              cp terraform.tfstate $PIPELINE_SCRIPTREPOBB_STATE  
+#            fi
+        ######## Export AWS env variables for use by Terraform CLI
+#        - script: >
+#            export 
+#            AWS_ACCESS_KEY_ID=$SHIP_AWS_CLI_INTEGRATION_AWS_ACCESS_KEY_ID 
+#            AWS_SECRET_ACCESS_KEY=$SHIP_AWS_CLI_INTEGRATION_AWS_SECRET_ACCESS_KEY
+#            AWS_DEFAULT_REGION=$SHIP_AWS_CLI_POINTER_REGION
+#        - script: |
+#            cd $PIPELINE_SCRIPTREPOBB_STATE
+#            terraform apply
+        ######## Execute Terraform script to destroy
+        #- script: |
+          #  cd $MYGITHUBREPO_STATE  
+          #  terraform destroy -force
+ #   on_success: 
+ #     - script: echo "SUCCESS"
+ #   on_failure:
+ #     - script: echo "FAILURE"
+    ############# save Terraform statefile for use in subsequent jobs
+ #   always:
+ #     - script: |
+ #         cd $PIPELINE_SCRIPTREPOBB_STATE_STATE
+#          cp terraform.tfstate /build/state
+    flags:
+      - provision-aws-terraform_runsh
