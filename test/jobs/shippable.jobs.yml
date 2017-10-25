@@ -659,7 +659,7 @@ jobs:
  #         cd $PIPELINE_SCRIPTREPOBB_STATE_STATE
 #          cp terraform.tfstate /build/state
     flags:
-      - provision-aws-terraform
+      - provision-aws-terraforms
 
   - name: provision_aws_terraform_packer_runsh
     type: runSh
