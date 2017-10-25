@@ -558,7 +558,7 @@ jobs:
     
 # Provision instances on AWS with Terraform
   - name: provision_aws_terraform_packer
-    type: runCLI
+    type: runSh
     allowPublicAccess: false #never make this job allowPublicAccess: true since we have sensitive data
     steps:
       - IN: ship_aws_cli
@@ -566,6 +566,7 @@ jobs:
         switch: off
       - IN: ship_dh_cli
       - IN: test_paramsCLI
+      - IN: test_params
       - IN: runshscript
       - IN: pipeline_scriptRepobb
       - OUT: test_out_img2
@@ -603,7 +604,7 @@ jobs:
         - script: echo "--->resource_version_number"
         - script: shipctl get_resource_version_number "runshscript"
         - script: echo "--->get_resource_version_key"
-        - script: shipctl get_resource_version_key "test_paramsCLI" "TESTcli1"
+        - script: shipctl get_resource_version_key "test_params" "TEST"
         - script: echo "--->post_resource_state"        
         - script: shipctl post_resource_state "test_paramsCLI" "TESTcli1" "rc2"
         - script: cat "/build/IN/test_paramsCLI/params" #echo "TESTcli2=$TESTcli2"
