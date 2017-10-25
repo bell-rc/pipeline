@@ -603,7 +603,7 @@ jobs:
         - script: echo "--->resource_version_number"
         - script: shipctl get_resource_version_number "runshscript"
         - script: echo "--->get_resource_version_key"
-        - script: shipctl get_resource_version_key "test_paramsCLI" "TEST"
+        - script: shipctl get_resource_version_key "test_paramsCLI" "TESTcli1"
         - script: echo "--->post_resource_state"        
         - script: shipctl post_resource_state "test_paramsCLI" "TESTcli1" "rc2"
         - script: cat "/build/IN/test_paramsCLI/params" #echo "TESTcli2=$TESTcli2"
