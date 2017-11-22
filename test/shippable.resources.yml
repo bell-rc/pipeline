@@ -47,7 +47,7 @@ resources:
     pointer:
       sourceName: "nginx"
     seed:
-      versionName: "latest"
+      versionName: "latest1"
     flags:
       - deploy_img
   
