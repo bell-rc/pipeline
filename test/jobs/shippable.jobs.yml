@@ -109,7 +109,7 @@ jobs:
       - NOTIFY: notify-hipchat
       - NOTIFY: notify-irc
     steps:      
-      - IN: manifest_dep
+      - IN: manifest-dep
       - IN: ddc_cluster
       - IN: dockerOption1
       - TASK: managed  
