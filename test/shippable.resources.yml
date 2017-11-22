@@ -4,7 +4,7 @@ resources:
     type: gitRepo
     integration: bitbucket
     pointer:
-      sourceName: "shiptest-rc-ow/pipeline_scripts"
+      sourceName: "shiptest-rc-me/pipeline_scripts"
       branches:
         only:
           - master
@@ -17,7 +17,7 @@ resources:
     type: gitRepo
     integration: bitbucket
     pointer:
-      sourceName: "shiptest-rc-ow/pipeline_scripts"
+      sourceName: "shiptest-rc-me/pipeline_scripts"
       tags: 
         only:
           - v1.*
@@ -29,14 +29,14 @@ resources:
     type: gitRepo
     integration: bitbucket
     pointer:
-      sourceName: "shiptest-rc-ow/pipeline"
+      sourceName: "shiptest-rc-me/pipeline"
       branch: master  
     flags:
       - same_syncRepos
       
   - name: sample_img
     type: image
-    integration: ship-docker
+    integration: docker
     pointer:
       sourceName: "shippabledocker/pipelinev2"
     seed:
@@ -46,7 +46,7 @@ resources:
   
   - name: deploy_img
     type: image
-    integration: ship-docker
+    integration: docker
     pointer:
       sourceName: "nginx"
     seed:
@@ -56,7 +56,7 @@ resources:
   
   - name: deploy_img1
     type: image
-    integration: ship-docker
+    integration: docker
     pointer:
       sourceName: "shippabledocker/pipelinev2"
     seed:
@@ -64,7 +64,7 @@ resources:
   
   - name: deploy_img2
     type: image
-    integration: ship-docker
+    integration: docker
     pointer:
       sourceName: "shippabledocker/pipelinev2"
     seed:
@@ -72,7 +72,7 @@ resources:
   
   - name: deploy_img3
     type: image
-    integration: ship-docker
+    integration: docker
     pointer:
       sourceName: "shippabledocker/pipelinev2"
     seed:
@@ -80,32 +80,32 @@ resources:
       
   - name: ddc_cluster
     type: cluster
-    integration: ship-ddc
+    integration: ddc
     pointer:
       sourceName : "nothing"
     flags:
       - ddc_cluster
   
-  - name: aws_cluster
-    type: cluster
-    integration: ship-aws
-    pointer:
-      sourceName : "small-cluster"
-      region: "us-east-1"
+#  - name: aws_cluster
+ #   type: cluster
+ #   integration: ship-aws
+ #   pointer:
+ #     sourceName : "small-cluster"
+   #   region: "us-east-1"
   
-  - name: aws_cluster-new
-    type: cluster
-    integration: aws-new
-    pointer:
-      sourceName : "small-cluster"
-      region: "us-east-1"
+  #- name: aws_cluster-new
+  #  type: cluster
+  #  integration: aws-new
+  #  pointer:
+  #    sourceName : "small-cluster"
+  #    region: "us-east-1"
       
-  - name: awsIam_cluster
-    type: cluster
-    integration: ship-aws
-    pointer:
-      sourceName : "testCL"
-      region: "us-west-2"
+#  - name: awsIam_cluster
+ #   type: cluster
+ #   integration: ship-aws
+  #  pointer:
+  #    sourceName : "testCL"
+  #    region: "us-west-2"
       
  # - name: dep-ecsClusterLoadBalancer
  #   type: cluster
@@ -114,33 +114,33 @@ resources:
   #    sourceName : "loadBalanceTest"
    #   region: "us-east-1"
   
-  - name: kubernetes_cluster
-    type: cluster
-    integration: "ship-kubernetes"
+  #- name: kubernetes_cluster
+  #  type: cluster
+  #  integration: "ship-kubernetes"
   
  # - name: kubernetes-clusternew
  #   type: cluster
  #   integration: "kubernetes_new17aug2017"
     
-  - name: gke_cluster
-    type: cluster
-    integration: ship-gke
-    pointer:
-      sourceName: "small-cluster" #name of the cluster we are deploying.
-      region: "us-central1-a"
+#  - name: gke_cluster
+  #  type: cluster
+  #  integration: ship-gke
+  #  pointer:
+  #    sourceName: "small-cluster" #name of the cluster we are deploying.
+  #    region: "us-central1-a"
       
-  - name: triton_cluster
-    type: cluster
-    integration: ship-tripub
-    pointer:
-      sourceName: "default" # we can give anything it deploy instances based on region not by cluster name
-      region: "us-east-2"
+ # - name: triton_cluster
+ #   type: cluster
+ #   integration: ship-tripub
+ #   pointer:
+ #     sourceName: "default" # we can give anything it deploy instances based on region not by cluster name
+  #    region: "us-east-2"
   
-  - name: dcl_cluster
-    type: cluster
-    integration: ship-dcl
-    pointer:
-      sourceName : "cluster-dcl"
+ # - name: dcl_cluster
+   # type: cluster
+   # integration: ship-dcl
+  #  pointer:
+   #   sourceName : "cluster-dcl"
       
   - name: dockerOption1
     type: dockerOptions
@@ -151,7 +151,7 @@ resources:
       
   - name: test_out_img
     type: image
-    integration: ship-docker
+    integration: docker
     pointer:
       sourceName: "shippabledocker/ship_plv2node"
     seed:
@@ -161,7 +161,7 @@ resources:
   
   - name: test_out_img2
     type: image
-    integration: ship-docker
+    integration: docker
     pointer:
       sourceName: "shippabledocker/ship_plv2node"
     seed:
@@ -171,16 +171,15 @@ resources:
       
   - name: ship_dh
     type: integration
-    integration: "ship-docker"  
+    integration: "docker"  
     flags:
       - ship_dh
     
   - name: ship_aws
     type: integration
-    integration: "ship-aws"
+    integration: "awskeys"
     flags:
-      - ship_dh
-      - ship_dh2
+      - ship_aws
 
   - name: test_params
     type: params
@@ -207,7 +206,7 @@ resources:
       
   - name: notify-slack
     type: notification
-    integration: "notify-slack"
+    integration: "slack"
     pointer:
       recipients:
         - "#rc-public" 
@@ -238,7 +237,7 @@ resources:
   
   - name: notify-hipchat
     type: notification
-    integration: "notify-hipchat"
+    integration: "hipchat"
     pointer:
       recipients:
         - "#rc-public" 
@@ -246,53 +245,10 @@ resources:
         - "@shiptestrcow"
     flags:
       - notify-hipchat
-        
-  - name: ship_ecr_cli
-    type: cliConfig
-    integration: "ship-ecr"
-    pointer:
-      region: "us-east-1"
-    flags:
-      - ship_ecr_cli
-      
-  - name: ship_aws_cli
-    type: cliConfig
-    integration: "ship-aws"
-    pointer:
-      region: "us-east-1"
-    flags:
-      - ship_aws_cli
-  
-  - name: ship_dh_cli
-    type: cliConfig
-    integration: "ship-docker"
-    flags:
-      - ship_dh_cli
-  
-  - name: ship_gcr_cli
-    type: cliConfig
-    integration: "ship-gcr"
-    flags:
-      - ship_gcr_cli
-    
-  - name: ship_gke_cli
-    type: cliConfig
-    integration: "ship-gke"
-    pointer:
-      sourceName: "small-cluster"
-      region: "us-east1-d"
-    flags:
-      - ship_gke_cli
-    
-  - name: ship_quay_cli
-    type: cliConfig
-    integration: "ship-quay"
-    flags:
-      - ship_quay_cli
     
   - name: key-values
     type: integration
-    integration: "ship-keyvalue"
+    integration: "keyvalue"
     flags:
       - key-values
       
