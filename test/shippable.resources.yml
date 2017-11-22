@@ -177,7 +177,7 @@ resources:
     
   - name: ship_aws
     type: integration
-    integration: "awskeys"
+    integration: "aws"
     flags:
       - ship_aws
 
