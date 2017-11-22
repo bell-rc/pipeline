@@ -197,6 +197,7 @@ jobs:
         - script: shipctl sanitize_shippable_string "sanitize!@#$%^&*()-=+_[]{};,.<>"
         - script: echo "--->shipctl to_uppercase"
         - script: shipctl to_uppercase "uppercase!@#"
+        - script: echo TESTcli1=$TESTcli1
         ######### uncomment below line to test if PACKER is able to build an AMI on AWS
        # - script: packer build -var "aws_access_key="$SHIP_AWS_CLI_INTEGRATION_AWS_ACCESS_KEY_ID"" -var "aws_secret_key="$SHIP_AWS_CLI_INTEGRATION_AWS_SECRET_ACCESS_KEY"" IN/pipeline_scriptRepobb/gitRepo/packer.json
         ######### Restore previous Terraform statefile
