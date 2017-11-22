@@ -184,6 +184,10 @@ resources:
   - name: ship_aws_cli
     type: cliConfig
     integration: "aws"
+  
+  - name: ship_dh_cli
+    type: cliConfig
+    integration: "docker"
     
   - name: test_params
     type: params
