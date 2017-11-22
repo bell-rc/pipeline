@@ -180,7 +180,11 @@ resources:
     integration: "aws"
     flags:
       - ship_aws
-
+  
+  - name: ship_aws_cli
+    type: cliConfig
+    integration: "aws"
+    
   - name: test_params
     type: params
     version:
