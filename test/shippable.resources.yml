@@ -6,8 +6,9 @@ resources:
     pointer:
       sourceName: "shiptest-rc-me/pipeline_scripts"
       branches:
-        - master
-        - pr
+        only:
+          - master
+          - pr
       buildOnPullRequest: true
     flags:
       - pipeline_scriptRepobb
