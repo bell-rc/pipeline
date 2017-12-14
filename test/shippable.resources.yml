@@ -2,7 +2,7 @@ resources:
 
   - name: int-pipeline_scriptRepobb
     type: gitRepo
-    integration: bitbucket
+    integration: github
     pointer:
       sourceName: "shiptest-rc-ow/pipeline_scripts"
       branches:
@@ -21,7 +21,7 @@ resources:
           
   - name: int-plscript_RepoTagsnReleases
     type: gitRepo
-    integration: bitbucket
+    integration: github
     pointer:
       sourceName: "shiptest-rc-ow/pipeline_scripts"
       branches:
@@ -35,7 +35,7 @@ resources:
       
   - name: int-same_syncRepos
     type: gitRepo
-    integration: bitbucket
+    integration: github
     pointer:
       sourceName: "shiptest-rc-ow/pipeline"
       branch: master  
@@ -93,14 +93,14 @@ resources:
   
   - name: int-aws_cluster
     type: cluster
-    integration: ship-aws
+    integration: awskeys
     pointer:
       sourceName : "small-cluster"
       region: "us-east-1"
   
   - name: int-awsIam_cluster
     type: cluster
-    integration: ship-aws
+    integration: awskeys
     pointer:
       sourceName : "testCL"
       region: "us-west-2"
@@ -114,7 +114,7 @@ resources:
   
   - name: int-kubernetes_cluster
     type: cluster
-    integration: "ship-kubernetes"
+    integration: "kube"
   
  # - name: kubernetes-clusternew
  #   type: cluster
@@ -173,7 +173,7 @@ resources:
       
   - name: int-ship_aws
     type: integration
-    integration: "ship-aws"
+    integration: "awskeys"
     flags:
       - ship_dh
       - ship_dh2
@@ -245,7 +245,7 @@ resources:
 
   - name: int-old_aws_cli
     type: cliConfig
-    integration: "ship-aws"
+    integration: "awskeys"
     pointer:
       region: "us-east-1"
 
@@ -264,7 +264,7 @@ resources:
   
   - name: int-old_kube_cli
     type: cliConfig
-    integration: "ship-kubernetes"
+    integration: "kube"
     
   - name: int-old_gke_cli
     type: cliConfig
@@ -285,22 +285,22 @@ resources:
   
   - name: int-new_jfrog_cli
     type: cliConfig
-    integration: "jfrog-new"
+    integration: "jfrognew"
   
   - name: int-new_gke_cli
     type: cliConfig
-    integration: "gke-new"
+    integration: "ship-gke"
     pointer:
       sourceName: "small-cluster"
       region: "us-east1-d"
       
   - name: int-new_gcloud_cli
     type: cliConfig
-    integration: "gcloud-new"
+    integration: "ship-dcl"
   
   - name: int-new_kube_cli
     type: cliConfig
-    integration: "kube-new"
+    integration: "kube"
     
   - name: int-key-values
     type: integration
