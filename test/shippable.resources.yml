@@ -39,7 +39,13 @@ resources:
     pointer:
       sourceName: "Varsha-Arun/sample_pipelines"
       branch: master  
-
+  
+  - name: int-repo-script
+    type: gitRepo
+    integration: github
+    pointer:
+      sourceName: "Varsha-Arun/sample-script-3"
+      branch: master
       
   - name: int-sample_img
     type: image
