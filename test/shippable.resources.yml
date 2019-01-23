@@ -5,7 +5,7 @@ resources:
     integration: bitbucket
     pointer:
       sourceName: "shiptest-rc-me/pipeline_scripts"
-      buildOnPullRequestClose: true #false
+      buildOnPullRequestClose: true 
       buildOnPullRequest: true
       branches:
         only:
