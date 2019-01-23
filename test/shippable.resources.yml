@@ -2,9 +2,9 @@ resources:
 
   - name: pipeline_scriptRepobb
     type: gitRepo
-    integration: bitbucket
+    integration: github
     pointer:
-      sourceName: "shiptest-rc-me/pipeline_scripts"
+      sourceName: "Varsha-Arun/pipeline"
       buildOnPullRequestClose: true 
       buildOnPullRequest: true
       branches:
@@ -16,9 +16,9 @@ resources:
       
   - name: plscript_RepoTagsnReleases
     type: gitRepo
-    integration: bitbucket
+    integration: github
     pointer:
-      sourceName: "shiptest-rc-me/pipeline_scripts"
+      sourceName: "Varsha-Arun/pipeline"
       tags: 
         only:
           - v1.*
@@ -28,9 +28,9 @@ resources:
       
   - name: same_syncRepos
     type: gitRepo
-    integration: bitbucket
+    integration: github
     pointer:
-      sourceName: "shiptest-rc-me/pipeline"
+      sourceName: "Varsha-Arun/pipeline"
       branch: master  
     flags:
       - same_syncRepos
@@ -178,13 +178,13 @@ resources:
     
   - name: ship_aws
     type: integration
-    integration: "aws"
+    integration: "aws-new"
     flags:
       - ship_aws
   
   - name: ship_aws_cli
     type: cliConfig
-    integration: "aws"
+    integration: "aws-new"
   
   - name: ship_dh_cli
     type: cliConfig
@@ -259,5 +259,4 @@ resources:
     type: integration
     integration: "keyvalue"
     flags:
-      - key-values
-      
+      - key-values     
