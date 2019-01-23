@@ -1,6 +1,6 @@
 resources:
 
-  - name: pipeline_scriptRepobb
+  - name: pipeline_scriptRepoGH
     type: gitRepo
     integration: github
     pointer:
@@ -11,8 +11,6 @@ resources:
         only:
           - master
           - pr      
-    flags:
-      - pipeline_scriptRepobb
       
   - name: plscript_RepoTagsnReleases
     type: gitRepo
