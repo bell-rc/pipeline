@@ -11,7 +11,7 @@ jobs:
       - IN: t2runsh
       - IN: key-values
       - TASK:
-        - script: ./IN/pipeline_scriptRepoGH/gitRepo/runsh/testscript.sh
+        - script: ./IN/pipeline_scriptRepoGH/gitRepo/script.sh
         - script: echo $key1
         - script: echo $key2
        # - script: sleep 3m
