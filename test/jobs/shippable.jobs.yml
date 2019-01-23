@@ -3,7 +3,7 @@ jobs:
     type: runSh
    # allowPublicAccess: true
     steps:    
-      - IN: pipeline_scriptRepobb
+      - IN: pipeline_scriptRepoGH
         showBuildStatus: true
       - IN: ship_dh
       - IN: sample_img
@@ -11,7 +11,7 @@ jobs:
       - IN: t2runsh
       - IN: key-values
       - TASK:
-        - script: ./IN/pipeline_scriptRepobb/gitRepo/runsh/testscript.sh
+        - script: ./IN/pipeline_scriptRepoGH/gitRepo/runsh/testscript.sh
         - script: echo $key1
         - script: echo $key2
        # - script: sleep 3m
@@ -28,13 +28,13 @@ jobs:
       - NOTIFY: notify-irc
       - script: echo 'it is for on_start'      
     steps:    
-      - IN: pipeline_scriptRepobb
+      - IN: pipeline_scriptRepoGH
         switch: off
       - IN: runshscript   
       - IN: same_syncRepos
         switch: off
       - TASK:
-        - script: ./IN/pipeline_scriptRepobb/gitRepo/runsh/pre_runshjob.sh    
+        - script: ./IN/pipeline_scriptRepoGH/gitRepo/runsh/pre_runshjob.sh    
         - script: ./IN/same_syncRepos/gitRepo/script.sh  
         #- script: printenv
     flags: runsh_pre_jobscript
@@ -105,7 +105,7 @@ jobs:
   - name: deploy_ddc
     type: deploy    
     on_start:
-      - NOTIFY: notify-slack
+      - NOTIFY: notify-slackGH
       - NOTIFY: notify-email
       - NOTIFY: notify-hipchat
       - NOTIFY: notify-irc
@@ -116,12 +116,12 @@ jobs:
       - TASK: managed  
     flags: deploy_ddc
     on_success:         
-      - NOTIFY: notify-slack
+      - NOTIFY: notify-slackGH
       - NOTIFY: notify-email
       - NOTIFY: notify-hipchat
       - NOTIFY: notify-irc      
     on_failure:
-      - NOTIFY: notify-slack
+      - NOTIFY: notify-slackGH
       - NOTIFY: notify-email
       - NOTIFY: notify-hipchat
       - NOTIFY: notify-irc 
@@ -134,11 +134,11 @@ jobs:
       - IN: ship_aws_cli
       - IN: same_syncRepos
         switch: off
-      - IN: ship_dh_cli
-      - IN: test_paramsCLI
-      - IN: test_params
+      - IN: ship_dh_cli_gh
+      - IN: test_paramsCLI_GH
+      - IN: test_paramsGH
       - IN: runshscript
-      - IN: pipeline_scriptRepobb
+      - IN: pipeline_scriptRepoGH
       - OUT: test_out_img2
       - TASK:
         - script: export testEnv=EnvFromJob
