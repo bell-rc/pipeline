@@ -184,11 +184,11 @@ resources:
     type: cliConfig
     integration: "aws-new"
   
-  - name: ship_dh_cli
+  - name: ship_dh_cli_gh
     type: cliConfig
     integration: "docker"
     
-  - name: test_params
+  - name: test_paramsGH
     type: params
     version:
       params:
@@ -203,7 +203,7 @@ resources:
     version:
       count: 1
       
-  - name: test_paramsCLI
+  - name: test_paramsCLI_GH
     type: params
     version:
       params:
@@ -211,7 +211,7 @@ resources:
     flags:
       - test_paramsCLI
       
-  - name: notify-slack
+  - name: notify-slackGH
     type: notification
     integration: "slack"
     pointer:
